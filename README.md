@@ -24,7 +24,7 @@ NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.c
 
 ```java
 NextInputs inputs = new NextInputs();
-inputs.add(Inputs.editText(mUsernameEditText),
+inputs.add(Inputs.fromString(mUsername),
         StaticPattern.Required(),
         StaticPattern.Email()
 );
@@ -41,11 +41,11 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.3.1`：
+当前最新版本为 `1.3.2`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.3.1'
+    compile 'com.github.yoojia:next-inputs:1.3.2'
 }
 ```
 
