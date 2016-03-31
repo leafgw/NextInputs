@@ -4,6 +4,8 @@
 
 NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
 
+**Android扩展项目地址：**[https://github.com/yoojia/NextInputs-Android](https://github.com/yoojia/NextInputs-Android)
+
 ----
 
 # NextInputs 特点
