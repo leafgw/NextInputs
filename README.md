@@ -4,6 +4,8 @@
 
 NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
 
+[![BuildStatus](https://travis-ci.org/yoojia/NextInputs.svg?branch=develop)](https://travis-ci.org/yoojia/NextInputs)
+
 ----
 
 # NextInputs 特点
