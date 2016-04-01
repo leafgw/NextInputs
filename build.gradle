@@ -80,7 +80,7 @@ bintray {
     publications = ['MavenJava']
 
     dryRun = false
-    publish = true // 是否自动发布
+    publish = false // 是否自动发布
 
     pkg {
         repo = 'maven'
@@ -99,7 +99,7 @@ bintray {
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
 
             mavenCentralSync {
-                sync = false
+                sync = project.hasProperty('SONATYPE_USER') && project.hasProperty('SONATYPE_PASS')
                 user = project.hasProperty('SONATYPE_USER') ? project.property('SONATYPE_USER') : ""
                 password = project.hasProperty('SONATYPE_PASS') ? project.property('SONATYPE_PASS') : ""
                 close = '1'
