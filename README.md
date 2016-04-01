@@ -6,7 +6,7 @@ NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.c
 
 **Android扩展项目地址：**[https://github.com/yoojia/NextInputs-Android](https://github.com/yoojia/NextInputs-Android)
 
-[![BuildStatus](https://travis-ci.org/yoojia/NextInputs.svg?branch=develop)](https://travis-ci.org/yoojia/NextInputs)
+[![BuildStatus](https://travis-ci.org/yoojia/NextInputs.svg?branch=master)](https://travis-ci.org/yoojia/NextInputs)
 
 ----
 
