@@ -43,11 +43,11 @@ dependencies {
 }
 ```
 
-当前最新版本为 `1.3.2`：
+当前最新版本为 `1.3.3`：
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.3.2'
+    compile 'com.github.yoojia:next-inputs:1.3.3'
 }
 ```
 

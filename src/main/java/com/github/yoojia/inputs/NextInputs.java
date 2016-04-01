@@ -70,6 +70,7 @@ public class NextInputs {
     /**
      * 在校验测试遇到失败时，是否停止校验
      * @param stopOnFail 是否停止
+     * @return NextInputs
      */
     public NextInputs setStopIfFail(boolean stopOnFail){
         mStopIfFail = stopOnFail;
@@ -80,6 +81,7 @@ public class NextInputs {
      * 设置校验测试结果消息显示接口
      * @param display 消息显示接口。
      * @throws NullPointerException 当参数为Null时，抛出异常。
+     * @return NextInputs
      */
     public NextInputs setMessageDisplay(MessageDisplay display){
         if (display == null) {
