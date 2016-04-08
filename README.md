@@ -4,7 +4,9 @@
 
 NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
 
-[![BuildStatus](https://travis-ci.org/yoojia/NextInputs.svg?branch=develop)](https://travis-ci.org/yoojia/NextInputs)
+**Android扩展项目地址：**[https://github.com/yoojia/NextInputs-Android](https://github.com/yoojia/NextInputs-Android)
+
+[![BuildStatus](https://travis-ci.org/yoojia/NextInputs.svg?branch=master)](https://travis-ci.org/yoojia/NextInputs)
 
 ----
 
@@ -214,7 +216,9 @@ input == null || input.length() == 0
 
 - 邮件: yoojia.chen@gmail.com
 - QQ: 228441083
-- 微信: ![WeChat](https://avatars2.githubusercontent.com/u/1492222)
+- 微信: chenyoca
+
+![WeChat](https://avatars2.githubusercontent.com/u/1492222)
 
 # Change Log
 
