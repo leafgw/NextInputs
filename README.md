@@ -216,7 +216,9 @@ input == null || input.length() == 0
 
 - 邮件: yoojia.chen@gmail.com
 - QQ: 228441083
-- 微信: ![WeChat](https://avatars2.githubusercontent.com/u/1492222)
+- 微信: chenyoca
+
+![WeChat](https://avatars2.githubusercontent.com/u/1492222)
 
 # Change Log
 
