@@ -41,7 +41,7 @@ boolean passed = inputs.test();
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.3.3'
+    compile 'com.github.yoojia:next-inputs:1.4'
 }
 ```
 
