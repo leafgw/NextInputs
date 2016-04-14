@@ -16,8 +16,8 @@ public class Fluent {
         this.mNextInputs = nextInputs;
     }
 
-    public NextInputs with(Pattern...patterns) {
-        mNextInputs.add(mInput, patterns);
+    public NextInputs with(Schema...schemas) {
+        mNextInputs.add(mInput, schemas);
         return mNextInputs;
     }
 }
