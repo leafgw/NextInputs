@@ -4,7 +4,9 @@
 
 NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
 
-[![BuildStatus](https://travis-ci.org/yoojia/NextInputs.svg?branch=develop)](https://travis-ci.org/yoojia/NextInputs)
+**Android扩展项目地址：**[https://github.com/yoojia/NextInputs-Android](https://github.com/yoojia/NextInputs-Android)
+
+[![BuildStatus](https://travis-ci.org/yoojia/NextInputs.svg?branch=master)](https://travis-ci.org/yoojia/NextInputs)
 
 ----
 
@@ -207,6 +209,16 @@ NextInputs对输入数据空值字符串的定义是：
 input == null || input.length() == 0
 ```
 ----
+
+# 分享交流
+
+如果你有想法和建议与我交流,欢迎通过下面方式联系:
+
+- 邮件: yoojia.chen@gmail.com
+- QQ: 228441083
+- 微信: chenyoca
+
+![WeChat](https://avatars2.githubusercontent.com/u/1492222)
 
 # Change Log
 
