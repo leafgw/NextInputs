@@ -18,12 +18,12 @@ public class TestOrderTest {
                         return "hahaha";
                     }
                 },
-                new Pattern(new OrderedVerifier(orderedBuff, "0")),
-                new Pattern(new OrderedVerifier(orderedBuff, "1")),
-                new Pattern(new OrderedVerifier(orderedBuff, "2")),
-                new Pattern(new OrderedVerifier(orderedBuff, "3")).priority(StaticPattern.PRIORITY_REQUIRED),
-                new Pattern(new OrderedVerifier(orderedBuff, "4")).priority(Integer.MAX_VALUE),
-                new Pattern(new OrderedVerifier(orderedBuff, "5")).priority(Integer.MIN_VALUE)
+                new Schema(new OrderedVerifier(orderedBuff, "0")),
+                new Schema(new OrderedVerifier(orderedBuff, "1")),
+                new Schema(new OrderedVerifier(orderedBuff, "2")),
+                new Schema(new OrderedVerifier(orderedBuff, "3")).priority(StaticSchema.PRIORITY_REQUIRED),
+                new Schema(new OrderedVerifier(orderedBuff, "4")).priority(Integer.MAX_VALUE),
+                new Schema(new OrderedVerifier(orderedBuff, "5")).priority(Integer.MIN_VALUE)
         );
 
         Assert.assertTrue(inputs.test());
