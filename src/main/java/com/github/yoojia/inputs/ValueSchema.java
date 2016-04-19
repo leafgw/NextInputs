@@ -126,7 +126,7 @@ public class ValueSchema {
      * @return Schema
      */
     public static Schema RangeValue(final int min, final int max) {
-        return ABTest(new RangeValueBridge(max, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+        return ABTest(new RangeValueBridge(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
     /**
@@ -136,7 +136,7 @@ public class ValueSchema {
      * @return Schema
      */
     public static Schema RangeValue(final long min, final long max) {
-        return ABTest(new RangeValueBridge(max, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+        return ABTest(new RangeValueBridge(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
     /**
@@ -146,7 +146,7 @@ public class ValueSchema {
      * @return Schema
      */
     public static Schema RangeValue(final float min, final float max) {
-        return ABTest(new RangeValueBridge(max, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+        return ABTest(new RangeValueBridge(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
     /**
@@ -156,7 +156,7 @@ public class ValueSchema {
      * @return Schema
      */
     public static Schema RangeValue(final double min, final double max) {
-        return ABTest(new RangeValueBridge(max, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+        return ABTest(new RangeValueBridge(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
     /**
