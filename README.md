@@ -222,6 +222,10 @@ input == null || input.length() == 0
 
 # Change Log
 
+##### 1.4.1
+
+- 修正ValueScheme的RangeValue参数错误；
+
 ##### 1.4
 
 - Pattern，StaticPattern，ValuePattern 标识为 @@Deprecated，并重命名为：Schema, StaticSchema, ValueSchema
