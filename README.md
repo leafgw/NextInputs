@@ -218,8 +218,6 @@ input == null || input.length() == 0
 - QQ: 228441083
 - 微信: chenyoca
 
-![WeChat](https://avatars2.githubusercontent.com/u/1492222)
-
 # Change Log
 
 ##### 1.4.1
