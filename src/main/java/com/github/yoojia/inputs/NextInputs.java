@@ -11,9 +11,9 @@ import java.util.Comparator;
  */
 public class NextInputs {
 
-    private static final Comparator<Schema> ORDERING = new Comparator<Schema>() {
+    private static final Comparator<Scheme> ORDERING = new Comparator<Scheme>() {
         @Override
-        public int compare(Schema lhs, Schema rhs) {
+        public int compare(Scheme lhs, Scheme rhs) {
             return lhs.orderPriority - rhs.orderPriority;
         }
     };
@@ -55,15 +55,15 @@ public class NextInputs {
     /**
      * 添加输入条目及测试模式。
      * @param input 输入条目
-     * @param schemas 测试模式
+     * @param schemes 测试模式
      * @return NextInputs
      */
-    public NextInputs add(Input input, Schema...schemas){
-        if (schemas == null || schemas.length == 0){
+    public NextInputs add(Input input, Scheme... schemes){
+        if (schemes == null || schemes.length == 0){
             throw new IllegalArgumentException("Patterns is required !");
         }
-        Arrays.sort(schemas, ORDERING);
-        mVerifiers.add(new VerifierMeta(input, schemas));
+        Arrays.sort(schemes, ORDERING);
+        mVerifiers.add(new VerifierMeta(input, schemes));
         return this;
     }
 
@@ -102,9 +102,9 @@ public class NextInputs {
 
     private boolean performTest(VerifierMeta meta) throws Exception {
         final String value = meta.input.getValue();
-        for (Schema schema : meta.schemas) {
-            if ( ! schema.verifier.perform(value)) {
-                mMessageDisplay.show(meta.input, schema.message);
+        for (Scheme scheme : meta.mSchemes) {
+            if ( ! scheme.verifier.perform(value)) {
+                mMessageDisplay.show(meta.input, scheme.message);
                 return false;
             }
         }

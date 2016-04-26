@@ -5,7 +5,7 @@ package com.github.yoojia.inputs;
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.4
  */
-public class Schema {
+public class Scheme {
 
     /**
      * 当验证失败时的提示消息
@@ -14,29 +14,29 @@ public class Schema {
 
     /**
      * 验证顺序优先级.默认为 StaticPattern.PRIORITY_GENERAL
-     * @see StaticSchema
+     * @see StaticScheme
      */
-    int orderPriority = StaticSchema.PRIORITY_GENERAL;
+    int orderPriority = StaticScheme.PRIORITY_GENERAL;
 
     /**
      * 具体校验算法实现接口
      */
     final Verifier verifier;
 
-    public Schema(Verifier verifier) {
+    public Scheme(Verifier verifier) {
         this.verifier = verifier;
     }
 
-    public Schema msgOnFail(String message){
+    public Scheme msgOnFail(String message){
         return msg(message);
     }
 
-    public Schema priority(int priority){
+    public Scheme priority(int priority){
         this.orderPriority = priority;
         return this;
     }
 
-    public Schema msg(String message){
+    public Scheme msg(String message){
         this.message = message;
         return this;
     }
