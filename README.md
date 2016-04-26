@@ -29,8 +29,8 @@ NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.c
 ```java
 NextInputs inputs = new NextInputs();
 inputs.add(Inputs.fromString(mUsername),
-        StaticSchema.Required(),
-        StaticSchema.Email()
+        StaticScheme.Required(),
+        StaticScheme.Email()
 );
 boolean passed = inputs.test();
 ```
@@ -47,7 +47,7 @@ dependencies {
 
 ----
 
-# StaticSchema - 静态校验模式
+# StaticScheme - 静态校验模式
 
 `静态校验模式`也可以称为数据格式匹配模式。在校验时不需要其它辅助参数，而是直接校验输入数据的格式是否符合要求。
 NextInputs目前内置包含以下几种静态校验模式，在未来版本也会加入其它使用频率较高的模式：
@@ -74,62 +74,62 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 
 注意：
 
-- Required的校验优先级默认为 `StaticSchema/ValueSchema.PRIORITY_REQUIRED(-1024)`，其它优先级为 `StaticSchema/ValueSchema.PRIORITY_GENERAL(0)`。
+- Required的校验优先级默认为 `StaticScheme/ValueScheme.PRIORITY_REQUIRED(-1024)`，其它优先级为 `StaticScheme/ValueScheme.PRIORITY_GENERAL(0)`。
 - 如果输入条目没有添加Required校验模式（或者NotBlank模式），在输入内容为空的情况下，校验结果是通过（Passed）的。
 
 #### NotBlank - 非空数据模式
 
 > 设置Required模式后，输入内容不能是任何空值，也是NextInputs不允许空值的两条校验规则之一
 
-`StaticSchema.Required()`，输入内容不能为任何空数据，除空数据外，还包括任意数量的纯空格、制表符等。
+`StaticScheme.Required()`，输入内容不能为任何空数据，除空数据外，还包括任意数量的纯空格、制表符等。
 
 #### Digits - 数字模式
 
-`StaticSchema.Digits()`，输入内容只能是纯数字。
+`StaticScheme.Digits()`，输入内容只能是纯数字。
 
 #### Email - 邮件地址模式
 
-`StaticSchema.Email()`，输入内容必须是有效的电子邮件地址。
+`StaticScheme.Email()`，输入内容必须是有效的电子邮件地址。
 
 #### IPv4 - IP地址模式
 
-`StaticSchema.IPv4()`，输入内容必须是有效的IPv4地址。
+`StaticScheme.IPv4()`，输入内容必须是有效的IPv4地址。
 
 #### Host - 主机地址模式
 
-`StaticSchema.Host()`，输入内容必须是有效的主机地址。这个模块包含了IPv4的校验。
+`StaticScheme.Host()`，输入内容必须是有效的主机地址。这个模块包含了IPv4的校验。
 
 #### URL - URL地址模式
 
-`StaticSchema.URL()`，输入内容必须是有效的URL地址。
+`StaticScheme.URL()`，输入内容必须是有效的URL地址。
 
 #### Numeric - 数值模式
 
-`StaticSchema.Numeric()`，输入内容必须是有效的数值。
+`StaticScheme.Numeric()`，输入内容必须是有效的数值。
 
 #### BlankCard - 银行卡/信用卡号码模式
 
-`StaticSchema.BlankCard()`，输入内容必须是有效的银行卡号或者信用卡号。这个模式在实现上，使用银行卡号校验算法（Luhn）来校验，可以支持13位到19位长度的有效卡号。
+`StaticScheme.BlankCard()`，输入内容必须是有效的银行卡号或者信用卡号。这个模式在实现上，使用银行卡号校验算法（Luhn）来校验，可以支持13位到19位长度的有效卡号。
 
 #### ChineseIDCard 身份证号码模式
 
-`StaticSchema.ChineseIDCard()`，输入内容必须是有效的中国居民身份证号码。这个模式支持15位和18位身份证号。
+`StaticScheme.ChineseIDCard()`，输入内容必须是有效的中国居民身份证号码。这个模式支持15位和18位身份证号。
 
 #### ChineseMobile 手机号码模式（国内手机号）
 
-`StaticSchema.ChineseMobile()`，输入内容必须是有效的手机号。这个手机号必须是11位国内手机号，其它国家或者地区的手机号暂不支持。
+`StaticScheme.ChineseMobile()`，输入内容必须是有效的手机号。这个手机号必须是11位国内手机号，其它国家或者地区的手机号暂不支持。
 
 #### IsTrue - 结果为True模式
 
-`StaticSchema.IsTrue()`，输入内容必须是True值。通常用于校验RadioBotton或者CheckBox等。
+`StaticScheme.IsTrue()`，输入内容必须是True值。通常用于校验RadioBotton或者CheckBox等。
 
 #### IsFalse - 结果为False模式
 
-`StaticSchema.IsFalse()`，输入内容必须是False值。通常用于校验RadioBotton或者CheckBox等。
+`StaticScheme.IsFalse()`，输入内容必须是False值。通常用于校验RadioBotton或者CheckBox等。
 
 ----
 
-# ValueSchema - 数值校验模式
+# ValueScheme - 数值校验模式
 
 `数值校验模式`需要指定校验参数来完成校验。
 NextInputs目前内置包含以下几种数值校验模式，在未来版本也会加入其它使用频率较高的模式：
@@ -146,42 +146,42 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 
 #### Required -  必填项目
 
-`ValueSchema.Required()`，与StaticSchema.Required相同。
+`ValueScheme.Required()`，与StaticScheme.Required相同。
 
 #### MinLength - 最小内容长度
 
-`ValueSchema.MinLength(minLength)`，输入内容的长度至少（包括）为指定长度。
+`ValueScheme.MinLength(minLength)`，输入内容的长度至少（包括）为指定长度。
 
 #### MaxLength - 最多内容长度
 
-`ValueSchema.MaxLength(maxLength)`，输入内容的长度最大（包括）为指定长度。
+`ValueScheme.MaxLength(maxLength)`，输入内容的长度最大（包括）为指定长度。
 
 #### RangeLength - 内容长度在指定范围内
 
-`ValueSchema.RangeLength(minLength, maxLength)`，输入内容的长度在指定范围内。
+`ValueScheme.RangeLength(minLength, maxLength)`，输入内容的长度在指定范围内。
 
 #### MinValue - 最小值
 
-`ValueSchema.MinValue(minValue)`，输入数值最小（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
+`ValueScheme.MinValue(minValue)`，输入数值最小（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
 
 #### MaxValue - 最大值
 
-`ValueSchema.MaxValue(minValue)`，输入数值最大（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
+`ValueScheme.MaxValue(minValue)`，输入数值最大（包括）为指定数值。支持的数值类型：Int、Long、Float、Double；
 
 #### RangeValue - 数值范围
 
-`ValueSchema.RangeValue(minValue, maxValue)`，输入数值在（包括）指定数值范围内。支持的数值类型：Int、Long、Float、Double；
+`ValueScheme.RangeValue(minValue, maxValue)`，输入数值在（包括）指定数值范围内。支持的数值类型：Int、Long、Float、Double；
 
 #### Equals - 与指定内容相同
 
-`ValueSchema.Equals(...)`，输入内容与指定内容相同。Equals有两个实现方式，一个是`Equals(Loader<String>)`，另一个是`Equals(fixedString)`；
+`ValueScheme.Equals(...)`，输入内容与指定内容相同。Equals有两个实现方式，一个是`Equals(Loader<String>)`，另一个是`Equals(fixedString)`；
 
 - `Equals(Loader<String>)`，延迟加载参数形式。当开始校验时，Loader的`getValue`方法才会被执行，并要求返回一个用于匹配输入内容的字符串；
 - `Equals(fixedString)`，与指定固定字符串相同；
 
 #### NotEquals - 与指定内容不相同
 
-方式与`ValueSchema.Equals`相同，判断方式取反。
+方式与`ValueScheme.Equals`相同，判断方式取反。
 
 ----
 
@@ -197,7 +197,7 @@ NextInputs内置的所有校验模式都自带提示消息，这些提示消息�
 
 # 自定义校验优先级
 
-NextInputs是通过 `Schema.priority` 的数值来决定优先级的，按数值升序。在非常有必要的情况下，可以使用 `Schema.setPriority(int)` 方法来自定义校验模式的优先级。不建议自定义优先级，使用代码顺序即可。
+NextInputs是通过 `Scheme.priority` 的数值来决定优先级的，按数值升序。在非常有必要的情况下，可以使用 `Scheme.setPriority(int)` 方法来自定义校验模式的优先级。不建议自定义优先级，使用代码顺序即可。
 
 ----
 
@@ -220,13 +220,17 @@ input == null || input.length() == 0
 
 # Change Log
 
+##### 1.5
+
+- Schema 修正为 Scheme
+
 ##### 1.4.1
 
 - 修正ValueScheme的RangeValue参数错误；
 
 ##### 1.4
 
-- Pattern，StaticPattern，ValuePattern 标识为 @@Deprecated，并重命名为：Schema, StaticSchema, ValueSchema
+- Pattern，StaticPattern，ValuePattern 标识为 @@Deprecated，并重命名为：Scheme, StaticScheme, ValueScheme
 
 ##### 1.3
 
@@ -235,9 +239,9 @@ input == null || input.length() == 0
 ##### 1.1
 
 - 更新各个校验模式的内部实现,分离其Tester；
-- ValueSchema 修改为 ValueSchema
-- ValueSchema.EqualsTo() 修改为 ValueSchema.Equals()；
-- ValueSchema.NotEqualsTo() 修改为 ValueSchema.NotEquals()；
+- ValueScheme 修改为 ValueScheme
+- ValueScheme.EqualsTo() 修改为 ValueScheme.Equals()；
+- ValueScheme.NotEqualsTo() 修改为 ValueScheme.NotEquals()；
 - ABTestBridge 更改为 ABBridge；
 - AbstractTester 更改为 Verifier；
 - Loader 更改为 LazyLoader；

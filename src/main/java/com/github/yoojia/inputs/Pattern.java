@@ -1,11 +1,11 @@
 package com.github.yoojia.inputs;
 
 /**
- * Use Schema instead
+ * Use Scheme instead
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
 @Deprecated
-public class Pattern extends Schema {
+public class Pattern extends Scheme {
 
     public Pattern(Verifier verifier) {
         super(verifier);

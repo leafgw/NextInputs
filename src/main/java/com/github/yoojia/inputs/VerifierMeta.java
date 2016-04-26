@@ -6,10 +6,10 @@ package com.github.yoojia.inputs;
 class VerifierMeta {
 
     public final Input input;
-    public final Schema[] schemas;
+    public final Scheme[] mSchemes;
 
-    public VerifierMeta(Input input, Schema[] schemas) {
+    public VerifierMeta(Input input, Scheme[] schemes) {
         this.input = input;
-        this.schemas = schemas;
+        this.mSchemes = schemes;
     }
 }

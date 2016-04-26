@@ -1,8 +1,8 @@
 package com.github.yoojia.inputs;
 
 /**
- * Use ValueSchema instead
+ * Use ValueScheme instead
  */
 @Deprecated
-public class ValuePattern extends ValueSchema {
+public class ValuePattern extends ValueScheme {
 }
