@@ -12,8 +12,9 @@ public abstract class EmptyableVerifier implements Verifier {
     public final boolean perform(String rawInput) throws Exception {
         if (isEmpty(rawInput)) {
             return true;
+        }else{
+            return performTestNotEmpty(rawInput);
         }
-        return performTestNotEmpty(rawInput);
     }
 
     public abstract boolean performTestNotEmpty(String notEmptyInput) throws Exception;
