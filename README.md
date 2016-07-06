@@ -4,6 +4,7 @@
 
 NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
 
+NextInputs-Android 是基于NextInputs的扩展库，为Android提供TextView、EditText等控件的扩展功能；
 **Android扩展项目地址：**[https://github.com/yoojia/NextInputs-Android](https://github.com/yoojia/NextInputs-Android)
 
 [![BuildStatus](https://travis-ci.org/yoojia/NextInputs.svg?branch=master)](https://travis-ci.org/yoojia/NextInputs)
@@ -41,7 +42,7 @@ boolean passed = inputs.test();
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.4'
+    compile 'com.github.yoojia:next-inputs:1.5.1'
 }
 ```
 

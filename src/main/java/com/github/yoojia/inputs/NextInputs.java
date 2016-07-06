@@ -60,7 +60,7 @@ public class NextInputs {
      */
     public NextInputs add(Input input, Scheme... schemes){
         if (schemes == null || schemes.length == 0){
-            throw new IllegalArgumentException("Patterns is required !");
+            throw new IllegalArgumentException("Test schemes is required !");
         }
         Arrays.sort(schemes, ORDERING);
         mVerifiers.add(new VerifierMeta(input, schemes));
@@ -85,7 +85,7 @@ public class NextInputs {
      */
     public NextInputs setMessageDisplay(MessageDisplay display){
         if (display == null) {
-            throw new NullPointerException();
+            throw new NullPointerException("MessageDisplay is null !");
         }
         mMessageDisplay = display;
         return this;
@@ -102,7 +102,7 @@ public class NextInputs {
 
     private boolean performTest(VerifierMeta meta) throws Exception {
         final String value = meta.input.getValue();
-        for (Scheme scheme : meta.mSchemes) {
+        for (Scheme scheme : meta.schemes) {
             if ( ! scheme.verifier.perform(value)) {
                 mMessageDisplay.show(meta.input, scheme.message);
                 return false;

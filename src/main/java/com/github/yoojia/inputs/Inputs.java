@@ -4,7 +4,7 @@ package com.github.yoojia.inputs;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.3
  */
-public class Inputs {
+public final class Inputs {
 
     public static Input fromString(final String fixedValue) {
         return new Input() {

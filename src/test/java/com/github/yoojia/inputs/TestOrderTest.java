@@ -23,11 +23,13 @@ public class TestOrderTest {
                 new Scheme(new OrderedVerifier(orderedBuff, "2")),
                 new Scheme(new OrderedVerifier(orderedBuff, "3")).priority(StaticScheme.PRIORITY_REQUIRED),
                 new Scheme(new OrderedVerifier(orderedBuff, "4")).priority(Integer.MAX_VALUE),
-                new Scheme(new OrderedVerifier(orderedBuff, "5")).priority(Integer.MIN_VALUE)
+                new Scheme(new OrderedVerifier(orderedBuff, "5")).priority(Integer.MAX_VALUE),
+                new Scheme(new OrderedVerifier(orderedBuff, "6")).priority(Integer.MIN_VALUE),
+                new Scheme(new OrderedVerifier(orderedBuff, "7")).priority(Integer.MIN_VALUE)
         );
 
         Assert.assertTrue(inputs.test());
-        Assert.assertEquals("530124", orderedBuff.toString());
+        Assert.assertEquals("67301245", orderedBuff.toString());
     }
 
     private static class OrderedVerifier implements Verifier {

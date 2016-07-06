@@ -4,7 +4,7 @@ package com.github.yoojia.inputs;
  *
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
-public class Texts {
+public final class Texts {
 
     /**
      * Is char sequence empty
