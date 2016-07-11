@@ -96,7 +96,12 @@ public class NextInputs {
      * @param input Input对象
      * @return 流式API接口
      */
+    @Deprecated
     public Fluent on(Input input) {
+        return add(input);
+    }
+
+    public Fluent add(Input input) {
         return new Fluent(input, this);
     }
 

@@ -29,11 +29,20 @@ NextInputs-Android 是基于NextInputs的扩展库，为Android提供TextView、
 
 ```java
 NextInputs inputs = new NextInputs();
-inputs.add(Inputs.fromString(mUsername),
-        StaticScheme.Required(),
-        StaticScheme.Email()
-);
-boolean passed = inputs.test();
+inputs.add(Provider.fromString("yoojia")).with(StaticScheme.Required())
+
+        .add(Provider.fromString("yoojia.chen@gmail.com"))
+        .with(StaticScheme.Email())
+
+        .add(Provider.fromString("13800138000"))
+        .with(StaticScheme.ChineseIDCard())
+
+        .add(Provider.fromString("4121551474702170"))
+        .with(StaticScheme.BlankCard());
+
+if(inputs.test()) {
+    // Passed
+}
 ```
 
 ----
@@ -42,7 +51,7 @@ boolean passed = inputs.test();
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.5.1'
+    compile 'com.github.yoojia:next-inputs:1.5.3'
 }
 ```
 
@@ -220,6 +229,10 @@ input == null || input.length() == 0
 - 微信: chenyoca
 
 # Change Log
+
+##### 1.5.3
+
+- 使用 Provider 替代 Inputs 工具类
 
 ##### 1.5
 
