@@ -3,6 +3,7 @@ package com.github.yoojia.inputs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * NextInputs
@@ -64,6 +65,22 @@ public class NextInputs {
         }
         Arrays.sort(schemes, ORDERING);
         mVerifiers.add(new VerifierMeta(input, schemes));
+        return this;
+    }
+
+    /**
+     * 移除指定Input的校验条目
+     * @param input Input对象
+     * @return NextInputs
+     */
+    public NextInputs remove(Input input) {
+        final List<VerifierMeta> toRemove = new ArrayList<>(1);
+        for(VerifierMeta meta: mVerifiers) {
+            if(meta.input == input) {
+                toRemove.add(meta);
+            }
+        }
+        mVerifiers.removeAll(toRemove);
         return this;
     }
 
