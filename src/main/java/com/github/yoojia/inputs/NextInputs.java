@@ -40,13 +40,15 @@ public class NextInputs {
     public boolean test(){
         VerifierMeta current = null;
         try{
+            boolean passed = true;
             for (VerifierMeta meta : mVerifiers) {
                 current = meta;
-                if ( ! performTest(meta) && mStopIfFail) {
-                    return false;
+                if(!performTest(meta)) {
+                    passed = false;
+                    if(mStopIfFail) return false;
                 }
             }
-            return true;
+            return passed;
         }catch (Throwable thr) {
             mMessageDisplay.show(current.input, thr.getMessage());
             return false;
@@ -81,6 +83,15 @@ public class NextInputs {
             }
         }
         mVerifiers.removeAll(toRemove);
+        return this;
+    }
+
+    /**
+     * 清除所有校验条目
+     * @return NextInputs
+     */
+    public NextInputs clear(){
+        mVerifiers.clear();
         return this;
     }
 

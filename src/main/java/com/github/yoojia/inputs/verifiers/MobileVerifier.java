@@ -19,6 +19,6 @@ public class MobileVerifier extends EmptyableVerifier {
      */
     @Override
     public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return regexMatch(notEmptyInput, "^(\\+?\\d{2}-?)?(1[34578])\\d{9}$");
+        return regexMatch(notEmptyInput, "^(\\+?\\d{2}-?)?1[34578]\\d{9}$");
     }
 }
