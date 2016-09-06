@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs;
 
-import com.github.yoojia.inputs.impl.*;
+import com.github.yoojia.inputs.verifiers.*;
 
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
