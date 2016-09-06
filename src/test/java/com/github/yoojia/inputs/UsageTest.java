@@ -1,5 +1,6 @@
 package com.github.yoojia.inputs;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -18,9 +19,10 @@ public class UsageTest {
                 .with(StaticScheme.Email())
 
                 .add(Provider.fromString("13800138000"))
-                .with(StaticScheme.ChineseIDCard())
+                .with(StaticScheme.ChineseMobile())
 
                 .add(Provider.fromString("4121551474702170"))
                 .with(StaticScheme.BlankCard());
+        Assert.assertTrue(inputs.test());
     }
 }
