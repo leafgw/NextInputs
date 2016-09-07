@@ -48,6 +48,15 @@ public class ValueScheme {
     }
 
     /**
+     * 限制内容为固定长度
+     * @param fixedLength 固定长度
+     * @return Scheme
+     */
+    public static Scheme FixedLength(final int fixedLength) {
+        return new Scheme(new FixedLengthVerifier(fixedLength)).msg("输入内容固定长度为" + fixedLength);
+    }
+
+    /**
      * 输入数值不能小于最小值
      * @param min 最小值
      * @return Scheme
