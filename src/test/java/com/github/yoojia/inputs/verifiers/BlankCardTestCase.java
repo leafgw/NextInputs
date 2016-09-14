@@ -12,7 +12,7 @@ public class BlankCardTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Verifier verifier = new BlankCardVerifier();
+        Verifier verifier = new BankCardVerifier();
         Assert.assertTrue(verifier.perform(null));
         Assert.assertTrue(verifier.perform(""));
         Assert.assertTrue(verifier.perform("378282246310005"));
@@ -38,7 +38,7 @@ public class BlankCardTestCase {
 
     @Test
     public void testFail() throws Exception {
-        Verifier verifier = new BlankCardVerifier();
+        Verifier verifier = new BankCardVerifier();
         Assert.assertFalse(verifier.perform("abc"));
         Assert.assertFalse(verifier.perform("123456789012345"));
         Assert.assertFalse(verifier.perform("123456789012345678"));

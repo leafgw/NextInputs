@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since  1.0
  */
-public class BlankCardVerifier extends EmptyableVerifier {
+public class BankCardVerifier extends EmptyableVerifier {
 
     @Override
     public boolean performTestNotEmpty(String input) {
