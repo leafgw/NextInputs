@@ -22,7 +22,7 @@ public class UsageTest {
                 .with(StaticScheme.ChineseMobile())
 
                 .add(Provider.fromString("4121551474702170"))
-                .with(StaticScheme.BlankCard());
+                .with(StaticScheme.BankCard());
         Assert.assertTrue(inputs.test());
     }
 }

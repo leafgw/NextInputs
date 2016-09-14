@@ -78,8 +78,8 @@ public class StaticScheme {
      * 银行卡号
      * @return Scheme
      */
-    public static Scheme BlankCard(){
-        return new Scheme(new BlankCardVerifier()).msg("请输入有效的银行卡/信用卡号码");
+    public static Scheme BankCard(){
+        return new Scheme(new BankCardVerifier()).msg("请输入有效的银行卡/信用卡号码");
     }
 
     /**
