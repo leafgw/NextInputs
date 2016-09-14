@@ -51,7 +51,7 @@ if(inputs.test()) {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.6.2'
+    compile 'com.github.yoojia:next-inputs:1.7'
 }
 ```
 
@@ -70,9 +70,11 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 - Host - 域名模式
 - URL - URL地址模式
 - Numeric - 数值模式
-- BlankCard - 银行卡/信用卡号码模式
+- BankCard - 银行卡/信用卡号码模式
 - ChineseIDCard 身份证号码模式
-- ChineseMobile 手机号码模式（国内手机号）
+- ChineseMobile 手机号码模式（国内）
+- ChineseTelephone 固定电话号码模式（国内）
+- MAC 设备物理地址（MAC Address）模式
 - IsTrue - 结果为True模式
 - IsFalse - 结果为False模式
 
@@ -117,9 +119,9 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 
 `StaticScheme.Numeric()`，输入内容必须是有效的数值。
 
-#### BlankCard - 银行卡/信用卡号码模式
+#### BankCard - 银行卡/信用卡号码模式
 
-`StaticScheme.BlankCard()`，输入内容必须是有效的银行卡号或者信用卡号。这个模式在实现上，使用银行卡号校验算法（Luhn）来校验，可以支持13位到19位长度的有效卡号。
+`StaticScheme.BankCard()`，输入内容必须是有效的银行卡号或者信用卡号。这个模式在实现上，使用银行卡号校验算法（Luhn）来校验，可以支持13位到19位长度的有效卡号。
 
 #### ChineseIDCard 身份证号码模式
 
@@ -128,6 +130,14 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 #### ChineseMobile 手机号码模式（国内手机号）
 
 `StaticScheme.ChineseMobile()`，输入内容必须是有效的手机号。这个手机号必须是11位国内手机号，其它国家或者地区的手机号暂不支持。
+
+#### ChineseTelephone 固定电话号码模式（国内）
+
+`StaticScheme.ChineseMobile()`，输入内容必须是有效的固定电话号码。其它国家或者地区的手机号暂不支持。
+
+#### MAC 设备物理地址（MAC Address）模式
+
+`StaticScheme.MAC()`，输入内容必须是有效的设备物理地址。
 
 #### IsTrue - 结果为True模式
 
@@ -222,6 +232,11 @@ input == null || input.length() == 0
 ----
 
 # Change Log
+
+##### 1.7
+
+- 增加固定电话校验模式：ChineseTelephone
+- 增加MAC物理地址校验模式：MAC
 
 ##### 1.6.2
 
