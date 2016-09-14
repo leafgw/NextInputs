@@ -35,10 +35,10 @@ inputs.add(Provider.fromString("yoojia")).with(StaticScheme.Required())
         .with(StaticScheme.Email())
 
         .add(Provider.fromString("13800138000"))
-        .with(StaticScheme.ChineseIDCard())
+        .with(StaticScheme.ChineseMobile())
 
         .add(Provider.fromString("4121551474702170"))
-        .with(StaticScheme.BlankCard());
+        .with(StaticScheme.BankCard());
 
 if(inputs.test()) {
     // Passed
@@ -51,7 +51,7 @@ if(inputs.test()) {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.6.1'
+    compile 'com.github.yoojia:next-inputs:1.6.2'
 }
 ```
 
@@ -223,12 +223,13 @@ input == null || input.length() == 0
 
 # Change Log
 
-##### 1.6.1
+##### 1.6.2
 
 - 更新手机号验证正则表达式；
 - 增加FixedLength校验；
 - 更新内部类名及包名；
 - 增加clear()方法，用于移除全部校验条目；
+- 修正BankCard拼写错误问题；
 
 ##### 1.5.3
 
