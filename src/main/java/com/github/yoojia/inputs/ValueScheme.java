@@ -2,6 +2,9 @@ package com.github.yoojia.inputs;
 
 import com.github.yoojia.inputs.verifiers.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.4
@@ -213,9 +216,86 @@ public class ValueScheme {
             }
         });
     }
-
+    
     public static <T> Scheme PairTest(final PairAdapter<T> bridge) {
         return new Scheme(new PairVerifier<>(bridge));
     }
 
+    // date
+
+    public static Scheme DateAfter(final String basedDate, final SimpleDateFormat format){
+        return new Scheme(new DateAfterVerifier(basedDate, format)).msg("设定的日期必须在" + basedDate + "之后");
+    }
+
+    public static Scheme DateAfter(final String basedDate){
+        return new Scheme(new DateAfterVerifier(basedDate)).msg("设定的日期必须在" + basedDate + "之后");
+    }
+
+    public static Scheme DateAfter(final Date basedDate, final SimpleDateFormat format){
+        return new Scheme(new DateAfterVerifier(basedDate, format)).msg("设定的日期必须在" + basedDate + "之后");
+    }
+
+    public static Scheme DateAfter(final Date basedDate){
+        return new Scheme(new DateAfterVerifier(basedDate)).msg("设定的日期必须在" + basedDate + "之后");
+    }
+
+    public static Scheme DateBefore(final String basedDate, final SimpleDateFormat format){
+        return new Scheme(new DateBeforeVerifier(basedDate, format)).msg("设定的日期必须在" + basedDate + "之前");
+    }
+
+    public static Scheme DateBefore(final String basedDate){
+        return new Scheme(new DateBeforeVerifier(basedDate)).msg("设定的日期必须在" + basedDate + "之前");
+    }
+    
+    // time
+
+    public static Scheme TimeAfter(final String basedTime, final SimpleDateFormat format){
+        return new Scheme(new TimeAfterVerifier(basedTime, format)).msg("设定的时间必须在" + basedTime + "之后");
+    }
+
+    public static Scheme TimeAfter(final String basedTime){
+        return new Scheme(new TimeAfterVerifier(basedTime)).msg("设定的时间必须在" + basedTime + "之后");
+    }
+
+    public static Scheme TimeAfter(final Date basedTime, final SimpleDateFormat format){
+        return new Scheme(new TimeAfterVerifier(basedTime, format)).msg("设定的时间必须在" + basedTime + "之后");
+    }
+
+    public static Scheme TimeAfter(final Date basedTime){
+        return new Scheme(new TimeAfterVerifier(basedTime)).msg("设定的时间必须在" + basedTime + "之后");
+    }
+
+    public static Scheme TimeBefore(final String basedTime, final SimpleDateFormat format){
+        return new Scheme(new TimeBeforeVerifier(basedTime, format)).msg("设定的时间必须在" + basedTime + "之前");
+    }
+
+    public static Scheme TimeBefore(final String basedTime){
+        return new Scheme(new TimeBeforeVerifier(basedTime)).msg("设定的时间必须在" + basedTime + "之前");
+    }
+
+    // date time
+
+    public static Scheme DateTimeAfter(final String basedDateTime, final SimpleDateFormat format){
+        return new Scheme(new DateTimeAfterVerifier(basedDateTime, format)).msg("设定的日期时间必须在" + basedDateTime + "之后");
+    }
+
+    public static Scheme DateTimeAfter(final String basedDateTime){
+        return new Scheme(new DateTimeAfterVerifier(basedDateTime)).msg("设定的日期时间必须在" + basedDateTime + "之后");
+    }
+
+    public static Scheme DateTimeAfter(final Date basedDateTime, final SimpleDateFormat format){
+        return new Scheme(new DateTimeAfterVerifier(basedDateTime, format)).msg("设定的日期时间必须在" + basedDateTime + "之后");
+    }
+
+    public static Scheme DateTimeAfter(final Date basedDateTime){
+        return new Scheme(new DateTimeAfterVerifier(basedDateTime)).msg("设定的日期时间必须在" + basedDateTime + "之后");
+    }
+
+    public static Scheme DateTimeBefore(final String basedDateTime, final SimpleDateFormat format){
+        return new Scheme(new DateTimeBeforeVerifier(basedDateTime, format)).msg("设定的日期时间必须在" + basedDateTime + "之前");
+    }
+
+    public static Scheme DateTimeBefore(final String basedDateTime){
+        return new Scheme(new DateTimeBeforeVerifier(basedDateTime)).msg("设定的日期时间必须在" + basedDateTime + "之前");
+    }
 }
