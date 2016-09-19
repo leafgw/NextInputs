@@ -11,8 +11,8 @@ public class MinValueTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        ValueBridge bridge = new MinValueBridge(10);
-        BridgeVerifier<Double> verifier = new BridgeVerifier<>(bridge);
+        ValuedPairAdapter bridge = new MinValueAdapter(10);
+        PairVerifier<Double> verifier = new PairVerifier<>(bridge);
         Assert.assertTrue(verifier.perform(null));
         Assert.assertTrue(verifier.perform(""));
         Assert.assertTrue(verifier.perform("10"));
@@ -22,8 +22,8 @@ public class MinValueTestCase {
 
     @Test
     public void testFail() throws Exception {
-        ValueBridge bridge = new MinValueBridge(10);
-        BridgeVerifier<Double> verifier = new BridgeVerifier<>(bridge);
+        ValuedPairAdapter bridge = new MinValueAdapter(10);
+        PairVerifier<Double> verifier = new PairVerifier<>(bridge);
         Assert.assertFalse(verifier.perform("9"));
         Assert.assertFalse(verifier.perform("0"));
         Assert.assertFalse(verifier.perform("-1"));

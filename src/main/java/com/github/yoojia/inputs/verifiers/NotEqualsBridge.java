@@ -13,7 +13,7 @@ public class NotEqualsBridge extends EqualsBridge {
     }
 
     @Override
-    public boolean performVerify(String input, String valueA, String valueB) {
-        return ! input.equals(valueA);
+    public boolean perform(String input, String first, String second) {
+        return ! input.equals(first);
     }
 }

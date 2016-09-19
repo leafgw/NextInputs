@@ -5,17 +5,17 @@ package com.github.yoojia.inputs;
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.1
  */
-public abstract class ABBridge<T> {
+public abstract class PairAdapter<T> {
 
     /**
      * @return Value A
      */
-    public abstract T getValueA();
+    public abstract T getFirst();
 
     /**
      * @return Value B
      */
-    public T getValueB(){
+    public T getSecond(){
         return null;
     }
 
@@ -24,13 +24,13 @@ public abstract class ABBridge<T> {
      * @param input String input
      * @return typed value
      */
-    public abstract T stringToTyped(String input);
+    public abstract T inputToTyped(String input);
 
     /**
      * @param input Input value
-     * @param valueA Value A
-     * @param valueB Value B
+     * @param first Value A
+     * @param second Value B
      * @return test result
      */
-    public abstract boolean performVerify(T input, T valueA, T valueB);
+    public abstract boolean perform(T input, T first, T second);
 }

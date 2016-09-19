@@ -62,7 +62,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme MinValue(final int min) {
-        return ABTest(new MinValueBridge(min)).msg("输入数值最小为：" + min);
+        return PairTest(new MinValueAdapter(min)).msg("输入数值最小为：" + min);
     }
 
     /**
@@ -71,7 +71,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme MinValue(final long min) {
-        return ABTest(new MinValueBridge(min)).msg("输入数值最小为：" + min);
+        return PairTest(new MinValueAdapter(min)).msg("输入数值最小为：" + min);
     }
 
     /**
@@ -80,7 +80,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme MinValue(final float min) {
-        return ABTest(new MinValueBridge(min)).msg("输入数值最小为：" + min);
+        return PairTest(new MinValueAdapter(min)).msg("输入数值最小为：" + min);
     }
 
     /**
@@ -89,7 +89,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme MinValue(final double min) {
-        return ABTest(new MinValueBridge(min)).msg("输入数值最小为：" + min);
+        return PairTest(new MinValueAdapter(min)).msg("输入数值最小为：" + min);
     }
 
     /**
@@ -98,7 +98,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme MaxValue(final int max) {
-        return ABTest(new MaxValueBridge(max)).msg("输入数值最大为：" + max);
+        return PairTest(new MaxValueAdapter(max)).msg("输入数值最大为：" + max);
     }
 
     /**
@@ -107,7 +107,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme MaxValue(final long max) {
-        return ABTest(new MaxValueBridge(max)).msg("输入数值最大为：" + max);
+        return PairTest(new MaxValueAdapter(max)).msg("输入数值最大为：" + max);
     }
 
     /**
@@ -116,7 +116,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme MaxValue(final float max) {
-        return ABTest(new MaxValueBridge(max)).msg("输入数值最大为：" + max);
+        return PairTest(new MaxValueAdapter(max)).msg("输入数值最大为：" + max);
     }
 
     /**
@@ -125,7 +125,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme MaxValue(final double max) {
-        return ABTest(new MaxValueBridge(max)).msg("输入数值最大为：" + max);
+        return PairTest(new MaxValueAdapter(max)).msg("输入数值最大为：" + max);
     }
 
     /**
@@ -135,7 +135,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme RangeValue(final int min, final int max) {
-        return ABTest(new RangeValueBridge(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+        return PairTest(new RangeValueAdapter(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
     /**
@@ -145,7 +145,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme RangeValue(final long min, final long max) {
-        return ABTest(new RangeValueBridge(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+        return PairTest(new RangeValueAdapter(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
     /**
@@ -155,7 +155,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme RangeValue(final float min, final float max) {
-        return ABTest(new RangeValueBridge(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+        return PairTest(new RangeValueAdapter(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
     /**
@@ -165,7 +165,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme RangeValue(final double min, final double max) {
-        return ABTest(new RangeValueBridge(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+        return PairTest(new RangeValueAdapter(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
     }
 
     /**
@@ -174,7 +174,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme EqualsTo(final LazyLoader<String> lazyLoader){
-        return ABTest(new EqualsBridge(lazyLoader)).msg("输入内容与要求不一致");
+        return PairTest(new EqualsBridge(lazyLoader)).msg("输入内容与要求不一致");
     }
 
     /**
@@ -197,7 +197,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme NotEquals(final LazyLoader<String> lazyLoader){
-        return ABTest(new NotEqualsBridge(lazyLoader)).msg("输入内容不能与要求的相同");
+        return PairTest(new NotEqualsBridge(lazyLoader)).msg("输入内容不能与要求的相同");
     }
 
     /**
@@ -214,8 +214,8 @@ public class ValueScheme {
         });
     }
 
-    public static <T> Scheme ABTest(final ABBridge<T> bridge) {
-        return new Scheme(new BridgeVerifier<>(bridge));
+    public static <T> Scheme PairTest(final PairAdapter<T> bridge) {
+        return new Scheme(new PairVerifier<>(bridge));
     }
 
 }

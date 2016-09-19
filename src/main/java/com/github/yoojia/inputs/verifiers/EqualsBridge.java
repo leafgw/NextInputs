@@ -1,13 +1,13 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.ABBridge;
+import com.github.yoojia.inputs.PairAdapter;
 import com.github.yoojia.inputs.LazyLoader;
 
 /**
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class EqualsBridge extends ABBridge<String>{
+public class EqualsBridge extends PairAdapter<String> {
 
     private final LazyLoader<String> mStringLazyLoader;
 
@@ -16,22 +16,22 @@ public class EqualsBridge extends ABBridge<String>{
     }
 
     @Override
-    public String getValueA() {
+    public String getFirst() {
         return mStringLazyLoader.getValue();
     }
 
     @Override
-    public String getValueB() {
+    public String getSecond() {
         return mStringLazyLoader.getValue();
     }
 
     @Override
-    public String stringToTyped(String input) {
+    public String inputToTyped(String input) {
         return input;
     }
 
     @Override
-    public boolean performVerify(String input, String valueA, String valueB) {
-        return input.equals(valueA);
+    public boolean perform(String input, String first, String second) {
+        return input.equals(first);
     }
 }

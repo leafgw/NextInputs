@@ -18,7 +18,7 @@ public class EqualsTestCase {
                 return "NextInputs";
             }
         });
-        BridgeVerifier<String> verifier = new BridgeVerifier<>(bridge);
+        PairVerifier<String> verifier = new PairVerifier<>(bridge);
         Assert.assertTrue(verifier.perform("NextInputs"));
     }
 
@@ -30,7 +30,7 @@ public class EqualsTestCase {
                 return "NextInputs";
             }
         });
-        BridgeVerifier<String> verifier = new BridgeVerifier<>(bridge);
+        PairVerifier<String> verifier = new PairVerifier<>(bridge);
         Assert.assertFalse(verifier.perform("NextInputs-Java"));
     }
 }

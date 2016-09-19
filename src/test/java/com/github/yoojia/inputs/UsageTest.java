@@ -12,16 +12,16 @@ public class UsageTest {
     @Test
     public void test(){
         NextInputs inputs = new NextInputs();
-        inputs.add(Provider.fromString("yoojia"))
+        inputs.add(InputProviders.fixedString("yoojia"))
                 .with(StaticScheme.Required())
 
-                .add(Provider.fromString("yoojia.chen@gmail.com"))
+                .add(InputProviders.fixedString("yoojia.chen@gmail.com"))
                 .with(StaticScheme.Email())
 
-                .add(Provider.fromString("13800138000"))
+                .add(InputProviders.fixedString("13800138000"))
                 .with(StaticScheme.ChineseMobile())
 
-                .add(Provider.fromString("4121551474702170"))
+                .add(InputProviders.fixedString("4121551474702170"))
                 .with(StaticScheme.BankCard());
         Assert.assertTrue(inputs.test());
     }
