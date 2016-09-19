@@ -164,6 +164,15 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 - RangeValue - 数值范围
 - Equals - 与指定内容相同
 - NotEquals - 与指定内容不相同
+- DateBefore - 在指定日期之前
+- DateAfter - 在指定日期之后
+- RangeDate - 在指定日期内
+- DateTimeBefore - 在指定日期时间之前
+- DateTimeAfter - 在指定日期时间之后
+- RangeDateTime  - 在指定日期时间内
+- TimeBefore - 在指定时间之前
+- TimeAfter - 在指定时间之后
+- RangeTime - 在指定时间内
 
 #### Required -  必填项目
 
@@ -203,6 +212,44 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 #### NotEquals - 与指定内容不相同
 
 方式与`ValueScheme.Equals`相同，判断方式取反。
+
+#### DateBefore - 在指定日期之前
+
+校验输入的日期字符串要求符合`yyyy-MM-dd`格式，指定日期同上，也可以传入Date对象。
+
+#### DateAfter - 在指定日期之后
+
+校验输入的日期字符串要求符合`yyyy-MM-dd`格式，指定日期同上，也可以传入Date对象。
+
+#### RangeDate - 在指定日期内
+
+校验输入的日期字符串要求符合`yyyy-MM-dd`格式，指定日期同上，也可以传入Date对象。
+
+#### DateTimeBefore - 在指定日期时间之前
+
+校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### DateTimeAfter - 在指定日期时间之后
+
+校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### RangeDateTime  - 在指定日期时间内
+
+校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### TimeBefore - 在指定时间之前
+
+校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### TimeAfter - 在指定时间之后
+
+校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### RangeTime - 在指定时间内
+
+校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+
 
 ----
 

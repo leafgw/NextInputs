@@ -2,6 +2,8 @@ package com.github.yoojia.inputs;
 
 import com.github.yoojia.inputs.verifiers.*;
 
+import java.text.SimpleDateFormat;
+
 /**
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.4
@@ -212,6 +214,22 @@ public class ValueScheme {
                 return fixedValue;
             }
         });
+    }
+
+    public static Scheme DateAfter(final String basedDate, final SimpleDateFormat format){
+        return new Scheme(new DateAfterVerifier(basedDate, format));
+    }
+
+    public static Scheme DateAfter(final String basedDate){
+        return new Scheme(new DateAfterVerifier(basedDate));
+    }
+
+    public static Scheme DateBefore(final String basedDate, final SimpleDateFormat format){
+        return new Scheme(new DateBeforeVerifier(basedDate, format));
+    }
+
+    public static Scheme DateBefore(final String basedDate){
+        return new Scheme(new DateBeforeVerifier(basedDate));
     }
 
     public static <T> Scheme ABTest(final ABBridge<T> bridge) {
