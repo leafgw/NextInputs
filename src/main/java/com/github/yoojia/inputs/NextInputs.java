@@ -19,12 +19,12 @@ public class NextInputs {
         }
     };
 
-    private final ArrayList<VerifierMeta> mVerifiers = new ArrayList<>();
+    private final ArrayList<InputSchemes> mVerifiers = new ArrayList<>();
 
     private MessageDisplay mMessageDisplay = new MessageDisplay() {
         @Override
         public void show(Input input, String message) {
-            System.err.println("Check input fail: " + message);
+            System.err.println("TEST FAIL: " + message);
         }
     };
 
@@ -38,19 +38,26 @@ public class NextInputs {
      * @return 校验测试结果是否成功
      */
     public boolean test(){
-        VerifierMeta current = null;
+        if(mVerifiers.isEmpty()){
+            throw new IllegalArgumentException("No inputs and schemes to test");
+        }
+        InputSchemes working = null;
         try{
             boolean passed = true;
-            for (VerifierMeta meta : mVerifiers) {
-                current = meta;
-                if(!performTest(meta)) {
+            for (InputSchemes current : mVerifiers) {
+                working = current;
+                final InputSchemes.Result r = current.perform();
+                if(!r.passed) {
+                    mMessageDisplay.show(working.input, r.message);
                     passed = false;
-                    if(mStopIfFail) return false;
+                    if(mStopIfFail) {
+                        return false;
+                    }
                 }
             }
             return passed;
         }catch (Throwable thr) {
-            mMessageDisplay.show(current.input, thr.getMessage());
+            mMessageDisplay.show(working.input, thr.getMessage());
             return false;
         }
     }
@@ -66,7 +73,7 @@ public class NextInputs {
             throw new IllegalArgumentException("Test schemes is required !");
         }
         Arrays.sort(schemes, ORDERING);
-        mVerifiers.add(new VerifierMeta(input, schemes));
+        mVerifiers.add(new InputSchemes(input, schemes));
         return this;
     }
 
@@ -76,8 +83,8 @@ public class NextInputs {
      * @return NextInputs
      */
     public NextInputs remove(Input input) {
-        final List<VerifierMeta> toRemove = new ArrayList<>(1);
-        for(VerifierMeta meta: mVerifiers) {
+        final List<InputSchemes> toRemove = new ArrayList<>(1);
+        for(InputSchemes meta: mVerifiers) {
             if(meta.input == input) {
                 toRemove.add(meta);
             }
@@ -124,24 +131,8 @@ public class NextInputs {
      * @param input Input对象
      * @return 流式API接口
      */
-    @Deprecated
-    public Fluent on(Input input) {
-        return add(input);
-    }
-
     public Fluent add(Input input) {
         return new Fluent(input, this);
-    }
-
-    private boolean performTest(VerifierMeta meta) throws Exception {
-        final String value = meta.input.getValue();
-        for (Scheme scheme : meta.schemes) {
-            if ( ! scheme.verifier.perform(value)) {
-                mMessageDisplay.show(meta.input, scheme.message);
-                return false;
-            }
-        }
-        return true;
     }
 
 }

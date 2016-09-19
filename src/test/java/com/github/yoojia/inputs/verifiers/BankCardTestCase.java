@@ -8,7 +8,7 @@ import org.junit.Test;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class BlankCardTestCase {
+public class BankCardTestCase {
 
     @Test
     public void testPassed() throws Exception {
