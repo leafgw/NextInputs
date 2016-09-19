@@ -29,15 +29,16 @@ NextInputs-Android 是基于NextInputs的扩展库，为Android提供TextView、
 
 ```java
 NextInputs inputs = new NextInputs();
-inputs.add(Provider.fromString("yoojia")).with(StaticScheme.Required())
+inputs.add(InputProviders.fixedString("yoojia"))
+        .with(StaticScheme.Required())
 
-        .add(Provider.fromString("yoojia.chen@gmail.com"))
+        .add(InputProviders.fixedString("yoojia.chen@gmail.com"))
         .with(StaticScheme.Email())
 
-        .add(Provider.fromString("13800138000"))
+        .add(InputProviders.fixedString("13800138000"))
         .with(StaticScheme.ChineseMobile())
 
-        .add(Provider.fromString("4121551474702170"))
+        .add(InputProviders.fixedString("4121551474702170"))
         .with(StaticScheme.BankCard());
 
 if(inputs.test()) {
@@ -277,7 +278,10 @@ input == null || input.length() == 0
 ```
 ----
 
-# Change Log
+# 注意事项
+
+
+# 版本更新
 
 ##### 1.7
 
