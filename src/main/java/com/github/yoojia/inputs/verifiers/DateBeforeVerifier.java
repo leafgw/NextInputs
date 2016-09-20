@@ -1,6 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
 import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader0Ex;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,32 +12,40 @@ import java.util.Date;
  */
 public class DateBeforeVerifier extends DateAfterVerifier{
 
-    public DateBeforeVerifier(String dateTimeStr, SimpleDateFormat format) {
-        super(dateTimeStr, format);
+    public DateBeforeVerifier(Loader0<Date> valueLoader) {
+        super(valueLoader);
     }
 
-    public DateBeforeVerifier(String dateTimeStr) {
-        super(dateTimeStr);
+    public DateBeforeVerifier(Loader0<Date> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public DateBeforeVerifier(Date basedValue, SimpleDateFormat format) {
-        super(basedValue, format);
+    public DateBeforeVerifier(Loader0Ex<String> valueLoader) {
+        super(valueLoader);
     }
 
-    public DateBeforeVerifier(Date basedValue) {
-        super(basedValue);
+    public DateBeforeVerifier(Loader0Ex<String> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public DateBeforeVerifier(Loader0<String> basedDateTimeLoader, SimpleDateFormat format) {
-        super(basedDateTimeLoader, format);
+    public DateBeforeVerifier(Date fixedValue) {
+        super(fixedValue);
     }
 
-    public DateBeforeVerifier(Loader0<String> basedDateTimeLoader) {
-        super(basedDateTimeLoader);
+    public DateBeforeVerifier(Date fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
+    }
+
+    public DateBeforeVerifier(String fixedValue) {
+        super(fixedValue);
+    }
+
+    public DateBeforeVerifier(String fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
     }
 
     @Override
-    protected boolean performTest(long basedValue, long sourceValue) {
-        return basedValue > sourceValue;
+    protected boolean performTypedTest(Long typedInput) {
+        return getBasedValue() > typedInput;
     }
 }

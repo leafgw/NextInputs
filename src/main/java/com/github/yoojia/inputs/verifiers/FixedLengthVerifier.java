@@ -1,6 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
 import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader0Ex;
 import com.github.yoojia.inputs.SingleVerifier;
 
 /**
@@ -18,7 +19,12 @@ public class FixedLengthVerifier extends SingleVerifier<Long> {
     }
 
     @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return notEmptyInput.length() == getBasedValue();
+    protected boolean performTypedTest(Long typedInput) {
+        return typedInput.longValue() == getBasedValue();
+    }
+
+    @Override
+    protected Long stringToTyped(String notEmptyInput) {
+        return (long)notEmptyInput.length();
     }
 }

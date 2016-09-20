@@ -1,29 +1,31 @@
 package com.github.yoojia.inputs.verifiers;
 
+import com.github.yoojia.inputs.Loader1;
+import com.github.yoojia.inputs.PairVerifier;
+
 /**
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class RangeValueAdapter extends ValuedPairAdapter {
+public class RangeValueAdapter extends PairVerifier<Double> {
 
-    public RangeValueAdapter(Double valueA, Double valueB) {
-        super(valueA, valueB);
+    public RangeValueAdapter(Loader1<Double> valueLoader) {
+        super(valueLoader);
     }
 
-    public RangeValueAdapter(Float valueA, Float valueB) {
-        super(valueA, valueB);
-    }
-
-    public RangeValueAdapter(Long valueA, Long valueB) {
-        super(valueA, valueB);
-    }
-
-    public RangeValueAdapter(Integer valueA, Integer valueB) {
-        super(valueA, valueB);
+    public RangeValueAdapter(double fixedFirstValue, double fixedSecondValue) {
+        super(fixedFirstValue, fixedSecondValue);
     }
 
     @Override
-    public boolean perform(Double input, Double first, Double second) {
-        return first <= input && input <= second;
+    protected boolean performTestValue(Double typedInput) {
+        final double minLength  = getFirstBasedValue();
+        final double maxLength  = getSecondBasedValue();
+        return minLength <= typedInput && typedInput <= maxLength;
+    }
+
+    @Override
+    protected Double stringToTyped(String notEmptyInput) {
+        return Double.parseDouble(notEmptyInput);
     }
 }

@@ -1,10 +1,9 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.EmptyableVerifier;
 import com.github.yoojia.inputs.Loader0;
-import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader0Ex;
+import com.github.yoojia.inputs.SingleVerifier;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -13,62 +12,49 @@ import java.util.Locale;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.7
  */
-abstract class SingleDateTimeVerifier extends EmptyableVerifier{
+abstract class SingleDateTimeVerifier extends SingleVerifier<Long>{
 
     static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
     static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
-    private final Loader0<Long> mBasedValueLoader;
     private final SimpleDateFormat mFormat;
 
-    // Fixed DateTime Object
-    public SingleDateTimeVerifier(final Date basedValue, SimpleDateFormat format) {
-        mFormat = format;
-        final long baseValue = basedValue.getTime();
-        mBasedValueLoader = new Loader0<Long>() {
+    // Loader: Data
+    public SingleDateTimeVerifier(final Loader0<Date> valueLoader, SimpleDateFormat format) {
+        super(new Loader0<Long>() {
             @Override public Long getValue() {
-                return baseValue;
+                return valueLoader.getValue().getTime();
             }
-        };
+        });
+        mFormat = format;
     }
 
-    // Fixed DateTime String
-    public SingleDateTimeVerifier(final String dateTimeStr, final SimpleDateFormat format) {
-        mFormat = format;
-        mBasedValueLoader = new Loader0<Long>() {
+    // Loader: String
+    public SingleDateTimeVerifier(final Loader0Ex<String> valueLoader, final SimpleDateFormat format) {
+        super(new Loader0<Long>() {
             @Override
             public Long getValue() {
-                try{
-                    return format.parse(dateTimeStr).getTime();
-                }catch (ParseException e){
-                    throw new RuntimeException(e);
-                }
+                return DateTimeKit.parse(valueLoader.toString(), format).getTime();
             }
-        };
+        });
+        mFormat = format;
     }
 
-    // Lazy loader: DateTime String
-    public SingleDateTimeVerifier(final Loader0<String> basedDateTimeLoader, final SimpleDateFormat format) {
+    // Fixed: Date
+    public SingleDateTimeVerifier(Date fixedValue, SimpleDateFormat format) {
+        super(fixedValue.getTime());
         mFormat = format;
-        mBasedValueLoader = new Loader0<Long>() {
-            @Override
-            public Long getValue() {
-                try{
-                    return format.parse(basedDateTimeLoader.getValue()).getTime();
-                }catch (ParseException e){
-                    throw new RuntimeException(e);
-                }
-            }
-        };
+    }
+
+    // Fixed: String
+    public SingleDateTimeVerifier(String fixedValue, SimpleDateFormat format) {
+        this(DateTimeKit.parse(fixedValue, format), format);
     }
 
     @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        final long sourceValue = mFormat.parse(notEmptyInput).getTime();
-        final long basedValue = mBasedValueLoader.getValue();
-        return performTest(basedValue, sourceValue);
+    protected Long stringToTyped(String notEmptyInput) {
+        return DateTimeKit.parse(notEmptyInput, mFormat).getTime();
     }
 
-    protected abstract boolean performTest(long basedValue, long sourceValue);
 }

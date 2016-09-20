@@ -1,6 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
 import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader0Ex;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,32 +12,40 @@ import java.util.Date;
  */
 public class DateTimeBeforeVerifier extends DateTimeAfterVerifier{
 
-    public DateTimeBeforeVerifier(String dateTimeStr) {
-        super(dateTimeStr);
+    public DateTimeBeforeVerifier(Loader0<Date> valueLoader) {
+        super(valueLoader);
     }
 
-    public DateTimeBeforeVerifier(String dateTimeStr, SimpleDateFormat format) {
-        super(dateTimeStr, format);
+    public DateTimeBeforeVerifier(Loader0<Date> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public DateTimeBeforeVerifier(Date basedValue) {
-        super(basedValue);
+    public DateTimeBeforeVerifier(Loader0Ex<String> valueLoader) {
+        super(valueLoader);
     }
 
-    public DateTimeBeforeVerifier(Date basedValue, SimpleDateFormat format) {
-        super(basedValue, format);
+    public DateTimeBeforeVerifier(Loader0Ex<String> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public DateTimeBeforeVerifier(Loader0<String> basedDateTimeLoader) {
-        super(basedDateTimeLoader);
+    public DateTimeBeforeVerifier(Date fixedValue) {
+        super(fixedValue);
     }
 
-    public DateTimeBeforeVerifier(Loader0<String> basedDateTimeLoader, SimpleDateFormat format) {
-        super(basedDateTimeLoader, format);
+    public DateTimeBeforeVerifier(Date fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
+    }
+
+    public DateTimeBeforeVerifier(String fixedValue) {
+        super(fixedValue);
+    }
+
+    public DateTimeBeforeVerifier(String fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
     }
 
     @Override
-    protected boolean performTest(long basedValue, long sourceValue) {
-        return basedValue > sourceValue;
+    protected boolean performTypedTest(Long typedInput) {
+        return getBasedValue() > typedInput;
     }
 }

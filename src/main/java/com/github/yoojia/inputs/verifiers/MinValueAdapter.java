@@ -1,29 +1,30 @@
 package com.github.yoojia.inputs.verifiers;
 
+import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.SingleVerifier;
+
 /**
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class MinValueAdapter extends ValuedPairAdapter {
+public class MinValueAdapter extends SingleVerifier<Double> {
 
-    public MinValueAdapter(Double valueA) {
-        super(valueA, null);
+    public MinValueAdapter(Loader0<Double> valueLoader) {
+        super(valueLoader);
     }
 
-    public MinValueAdapter(Float valueA) {
-        super(valueA, null);
-    }
-
-    public MinValueAdapter(Long valueA) {
-        super(valueA, null);
-    }
-
-    public MinValueAdapter(Integer valueA) {
-        super(valueA, null);
+    public MinValueAdapter(Double fixedValue) {
+        super(fixedValue);
     }
 
     @Override
-    public boolean perform(Double input, Double first, Double second) {
-        return input >= first;
+    protected Double stringToTyped(String notEmptyInput) {
+        return Double.parseDouble(notEmptyInput);
     }
+
+    @Override
+    protected boolean performTypedTest(Double typedInput) {
+        return typedInput >= getBasedValue();
+    }
+
 }

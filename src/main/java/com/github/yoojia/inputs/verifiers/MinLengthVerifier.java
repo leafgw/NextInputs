@@ -18,7 +18,13 @@ public class MinLengthVerifier extends SingleVerifier<Long> {
     }
 
     @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return notEmptyInput.length() >= getBasedValue();
+    protected Long stringToTyped(String notEmptyInput) {
+        return (long) notEmptyInput.length();
     }
+
+    @Override
+    protected boolean performTypedTest(Long typedInput) {
+        return typedInput >= getBasedValue();
+    }
+
 }

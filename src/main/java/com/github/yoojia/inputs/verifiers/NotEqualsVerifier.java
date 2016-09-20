@@ -1,13 +1,12 @@
 package com.github.yoojia.inputs.verifiers;
 
 import com.github.yoojia.inputs.Loader0;
-import com.github.yoojia.inputs.SingleVerifier;
 
 /**
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.7
  */
-public class NotEqualsVerifier extends SingleVerifier<String> {
+public class NotEqualsVerifier extends EqualsVerifier {
 
     public NotEqualsVerifier(Loader0<String> valueLoader) {
         super(valueLoader);
@@ -18,7 +17,8 @@ public class NotEqualsVerifier extends SingleVerifier<String> {
     }
 
     @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return !notEmptyInput.equals(getBasedValue());
+    protected boolean performTypedTest(String typedInput) {
+        return !super.performTypedTest(typedInput);
     }
+
 }

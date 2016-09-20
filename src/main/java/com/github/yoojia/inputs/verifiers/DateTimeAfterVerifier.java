@@ -1,6 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
 import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader0Ex;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,32 +12,40 @@ import java.util.Date;
  */
 public class DateTimeAfterVerifier extends SingleDateTimeVerifier {
 
-    public DateTimeAfterVerifier(String dateTimeStr) {
-        super(dateTimeStr, DATE_TIME_FORMAT);
+    public DateTimeAfterVerifier(Loader0<Date> valueLoader) {
+        super(valueLoader, DATE_TIME_FORMAT);
     }
 
-    public DateTimeAfterVerifier(String dateTimeStr, SimpleDateFormat format) {
-        super(dateTimeStr, format);
+    public DateTimeAfterVerifier(Loader0<Date> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public DateTimeAfterVerifier(Date basedValue) {
-        super(basedValue, DATE_TIME_FORMAT);
+    public DateTimeAfterVerifier(Loader0Ex<String> valueLoader) {
+        super(valueLoader, DATE_TIME_FORMAT);
     }
 
-    public DateTimeAfterVerifier(Date basedValue, SimpleDateFormat format) {
-        super(basedValue, format);
+    public DateTimeAfterVerifier(Loader0Ex<String> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public DateTimeAfterVerifier(Loader0<String> basedDateTimeLoader) {
-        super(basedDateTimeLoader, DATE_TIME_FORMAT);
+    public DateTimeAfterVerifier(Date fixedValue) {
+        super(fixedValue, DATE_TIME_FORMAT);
     }
 
-    public DateTimeAfterVerifier(Loader0<String> basedDateTimeLoader, SimpleDateFormat format) {
-        super(basedDateTimeLoader, format);
+    public DateTimeAfterVerifier(Date fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
+    }
+
+    public DateTimeAfterVerifier(String fixedValue) {
+        super(fixedValue, DATE_TIME_FORMAT);
+    }
+
+    public DateTimeAfterVerifier(String fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
     }
 
     @Override
-    protected boolean performTest(long basedValue, long sourceValue) {
-        return basedValue < sourceValue;
+    protected boolean performTypedTest(Long typedInput) {
+        return getBasedValue() < typedInput;
     }
 }

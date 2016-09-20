@@ -1,6 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
 import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader0Ex;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,33 +12,41 @@ import java.util.Date;
  */
 public class TimeBeforeVerifier extends TimeAfterVerifier{
 
-
-    public TimeBeforeVerifier(String dateTimeStr) {
-        super(dateTimeStr);
+    public TimeBeforeVerifier(Loader0<Date> valueLoader) {
+        super(valueLoader);
     }
 
-    public TimeBeforeVerifier(String dateTimeStr, SimpleDateFormat format) {
-        super(dateTimeStr, format);
+    public TimeBeforeVerifier(Loader0<Date> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public TimeBeforeVerifier(Date basedValue) {
-        super(basedValue);
+    public TimeBeforeVerifier(Loader0Ex<String> valueLoader) {
+        super(valueLoader);
     }
 
-    public TimeBeforeVerifier(Date basedValue, SimpleDateFormat format) {
-        super(basedValue, format);
+    public TimeBeforeVerifier(Loader0Ex<String> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public TimeBeforeVerifier(Loader0<String> basedDateTimeLoader) {
-        super(basedDateTimeLoader);
+    public TimeBeforeVerifier(Date fixedValue) {
+        super(fixedValue);
     }
 
-    public TimeBeforeVerifier(Loader0<String> basedDateTimeLoader, SimpleDateFormat format) {
-        super(basedDateTimeLoader, format);
+    public TimeBeforeVerifier(Date fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
+    }
+
+    public TimeBeforeVerifier(String fixedValue) {
+        super(fixedValue);
+    }
+
+    public TimeBeforeVerifier(String fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
     }
 
     @Override
-    protected boolean performTest(long basedValue, long sourceValue) {
-        return basedValue > sourceValue;
+    protected boolean performTypedTest(Long typedInput) {
+        return getBasedValue() > typedInput;
     }
+
 }

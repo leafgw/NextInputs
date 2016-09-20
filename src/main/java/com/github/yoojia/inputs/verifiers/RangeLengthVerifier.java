@@ -1,12 +1,13 @@
 package com.github.yoojia.inputs.verifiers;
 
 import com.github.yoojia.inputs.Loader1;
+import com.github.yoojia.inputs.PairVerifier;
 
 /**
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class RangeLengthVerifier extends com.github.yoojia.inputs.PairVerifier<Long> {
+public class RangeLengthVerifier extends PairVerifier<Long> {
 
     public RangeLengthVerifier(Loader1<Long> valueLoader) {
         super(valueLoader);
@@ -17,10 +18,14 @@ public class RangeLengthVerifier extends com.github.yoojia.inputs.PairVerifier<L
     }
 
     @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        final int length = notEmptyInput.length();
+    protected boolean performTestValue(Long typedInput) {
         final long minLength  = getFirstBasedValue();
         final long maxLength  = getSecondBasedValue();
-        return maxLength <= length && length <= maxLength;
+        return minLength <= typedInput && typedInput <= maxLength;
+    }
+
+    @Override
+    protected Long stringToTyped(String notEmptyInput) {
+        return (long)notEmptyInput.length();
     }
 }

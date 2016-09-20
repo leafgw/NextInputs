@@ -1,8 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
 
-import com.github.yoojia.inputs.Loader1;
-import com.github.yoojia.inputs.PairVerifier;
+import com.github.yoojia.inputs.Loader0;
 import com.github.yoojia.inputs.SingleVerifier;
 
 /**
@@ -10,14 +9,23 @@ import com.github.yoojia.inputs.SingleVerifier;
  * @since 1.1
  */
 public class MaxValueVerifier extends SingleVerifier<Double> {
-    @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return false;
+
+    public MaxValueVerifier(Loader0<Double> valueLoader) {
+        super(valueLoader);
     }
 
+    public MaxValueVerifier(Double fixedValue) {
+        super(fixedValue);
+    }
 
-//    @Override
-//    public boolean perform(Double input, Double first, Double second) {
-//        return input <= first;
-//    }
+    @Override
+    protected Double stringToTyped(String notEmptyInput) {
+        return Double.parseDouble(notEmptyInput);
+    }
+
+    @Override
+    protected boolean performTypedTest(Double typedInput) {
+        return typedInput <= getBasedValue();
+    }
+
 }
