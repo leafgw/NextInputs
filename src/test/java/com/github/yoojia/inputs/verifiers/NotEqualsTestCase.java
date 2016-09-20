@@ -12,7 +12,7 @@ public class NotEqualsTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        NotEqualsBridge bridge = new NotEqualsBridge(new LazyLoader<String>() {
+        NotEqualsVerifier bridge = new NotEqualsVerifier(new LazyLoader<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";
@@ -24,7 +24,7 @@ public class NotEqualsTestCase {
 
     @Test
     public void testFail() throws Exception {
-        NotEqualsBridge bridge = new NotEqualsBridge(new LazyLoader<String>() {
+        NotEqualsVerifier bridge = new NotEqualsVerifier(new LazyLoader<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";

@@ -1,8 +1,12 @@
 
+# Java SE
+
 **NextInputs** 基于 FireEye [https://github.com/yoojia/FireEye](https://github.com/yoojia/FireEye) 升级而来，
 继承了FireEye校验功能，并具有良好的扩展性，你可以根据业务需要创建自定义的校验规则。
 
 NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
+
+# Android
 
 NextInputs-Android 是基于NextInputs的扩展库，为Android提供TextView、EditText等控件的扩展功能；
 **Android扩展项目地址：**[https://github.com/yoojia/NextInputs-Android](https://github.com/yoojia/NextInputs-Android)
@@ -13,9 +17,9 @@ NextInputs-Android 是基于NextInputs的扩展库，为Android提供TextView、
 
 # NextInputs 特点
 
-* 轻量级，纯JDK实现，无第三方依赖；
+* 轻量级，纯JDK实现，无任何第三方库依赖；
 * 小巧，Jar文件仅30K+;
-* 内置大量常用校验模式;
+* 内置30+个常用校验模式;
 * 支持自定义校验模式扩展;
 * 支持自定义校验目标扩展;
 * 支持自定义错误消息提示;

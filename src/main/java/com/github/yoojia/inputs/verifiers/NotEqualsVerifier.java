@@ -4,21 +4,21 @@ import com.github.yoojia.inputs.Loader0;
 import com.github.yoojia.inputs.SingleVerifier;
 
 /**
- * @author YOOJIA CHEN (yoojiachen@gmail.com)
- * @since 1.6.1
+ * @author Yoojia Chen (yoojiachen@gmail.com)
+ * @since 1.7
  */
-public class FixedLengthVerifier extends SingleVerifier<Long> {
+public class NotEqualsVerifier extends SingleVerifier<String> {
 
-    public FixedLengthVerifier(Loader0<Long> valueLoader) {
+    public NotEqualsVerifier(Loader0<String> valueLoader) {
         super(valueLoader);
     }
 
-    public FixedLengthVerifier(long fixedValue) {
+    public NotEqualsVerifier(String fixedValue) {
         super(fixedValue);
     }
 
     @Override
     public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return notEmptyInput.length() == getBasedValue();
+        return !notEmptyInput.equals(getBasedValue());
     }
 }

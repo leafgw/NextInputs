@@ -24,30 +24,60 @@ public class ValueScheme {
 
     /**
      * 输入内容不能小于最小长度
-     * @param min 最小长度
+     * @param fixedLength 最小长度
      * @return Scheme
      */
-    public static Scheme MinLength(final int min) {
-        return new Scheme(new MinLengthVerifier(min)).msg("输入内容至少" + min + "个字符");
+    public static Scheme MinLength(final int fixedLength) {
+        return new Scheme(new MinLengthVerifier(fixedLength)).msg("输入内容至少{0}个字符");
+    }
+
+    /**
+     * 输入内容不能小于最小长度
+     * @param lengthLoader 最小长度数值延迟加载器
+     * @return Scheme
+     * @since 1.7
+     */
+    public static Scheme MinLength(Loader0<Long> lengthLoader) {
+        return new Scheme(new MinLengthVerifier(lengthLoader)).msg("输入内容至少{0}个字符");
     }
 
     /**
      * 输入内容不能大于最大长度
-     * @param max 最大长度
+     * @param fixedLength 最大长度数值延迟加载器
      * @return Scheme
      */
-    public static Scheme MaxLength(final int max) {
-        return new Scheme(new MaxLengthVerifier(max)).msg("输入内容最多" + max + "个字符");
+    public static Scheme MaxLength(final int fixedLength) {
+        return new Scheme(new MaxLengthVerifier(fixedLength)).msg("输入内容最多{0}个字符");
+    }
+
+    /**
+     * 输入内容不能大于最大长度
+     * @param lengthLoader 最大长度数值延迟加载器
+     * @return Scheme
+     * @since 1.7
+     */
+    public static Scheme MaxLength(final Loader0<Long> lengthLoader) {
+        return new Scheme(new MaxLengthVerifier(lengthLoader)).msg("输入内容最多{0}个字符");
     }
 
     /**
      * 输入内容在长度范围内
-     * @param min 最小长度
-     * @param max 最大长度
+     * @param fixedMinLength 最小长度
+     * @param fixedMaxLength 最大长度
      * @return Scheme
      */
-    public static Scheme RangeLength(final int min, final int max) {
-        return new Scheme(new RangeLengthVerifier(min, max)).msg("输入内容字符数量必须在[" + min + "," + max + "]之间");
+    public static Scheme RangeLength(final int fixedMinLength, final int fixedMaxLength) {
+        return new Scheme(new RangeLengthVerifier(fixedMinLength, fixedMaxLength)).msg("输入内容字符数量必须在[{0},{1}]之间");
+    }
+
+    /**
+     * 输入内容在长度范围内
+     * @param lengthLoader 最小、最大长度数值延迟加载器
+     * @return Scheme
+     * @since 1.7
+     */
+    public static Scheme RangeLength(Loader1<Long> lengthLoader) {
+        return new Scheme(new RangeLengthVerifier(lengthLoader)).msg("输入内容字符数量必须在[{0},{1}]之间");
     }
 
     /**
@@ -56,128 +86,138 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme FixedLength(final int fixedLength) {
-        return new Scheme(new FixedLengthVerifier(fixedLength)).msg("输入内容固定长度为" + fixedLength);
+        return new Scheme(new FixedLengthVerifier(fixedLength)).msg("输入内容固定长度为{0}");
+    }
+
+    /**
+     * 限制内容为固定长度
+     * @param lengthLoader 固定长度数值延迟加载器
+     * @return Scheme
+     * @since 1.7
+     */
+    public static Scheme FixedLength(final Loader0<Long> lengthLoader) {
+        return new Scheme(new FixedLengthVerifier(lengthLoader)).msg("输入内容固定长度为{0}");
     }
 
     /**
      * 输入数值不能小于最小值
-     * @param min 最小值
+     * @param fixedMin 最小值
      * @return Scheme
      */
-    public static Scheme MinValue(final int min) {
-        return PairTest(new MinValueAdapter(min)).msg("输入数值最小为：" + min);
+    public static Scheme MinValue(final int fixedMin) {
+        return PairTest(new MinValueAdapter(fixedMin)).msg("输入数值最小为：" + fixedMin);
     }
 
     /**
      * 输入数值不能小于最小值
-     * @param min 最小值
+     * @param fixedMin 最小值
      * @return Scheme
      */
-    public static Scheme MinValue(final long min) {
-        return PairTest(new MinValueAdapter(min)).msg("输入数值最小为：" + min);
+    public static Scheme MinValue(final long fixedMin) {
+        return PairTest(new MinValueAdapter(fixedMin)).msg("输入数值最小为：" + fixedMin);
     }
 
     /**
      * 输入数值不能小于最小值
-     * @param min 最小值
+     * @param fixedMin 最小值
      * @return Scheme
      */
-    public static Scheme MinValue(final float min) {
-        return PairTest(new MinValueAdapter(min)).msg("输入数值最小为：" + min);
+    public static Scheme MinValue(final float fixedMin) {
+        return PairTest(new MinValueAdapter(fixedMin)).msg("输入数值最小为：" + fixedMin);
     }
 
     /**
      * 输入数值不能小于最小值
-     * @param min 最小值
+     * @param fixedMin 最小值
      * @return Scheme
      */
-    public static Scheme MinValue(final double min) {
-        return PairTest(new MinValueAdapter(min)).msg("输入数值最小为：" + min);
+    public static Scheme MinValue(final double fixedMin) {
+        return PairTest(new MinValueAdapter(fixedMin)).msg("输入数值最小为：" + fixedMin);
     }
 
     /**
      * 输入数值不能大于最大值
-     * @param max 最大值
+     * @param fixedMax 最大值
      * @return Scheme
      */
-    public static Scheme MaxValue(final int max) {
-        return PairTest(new MaxValueAdapter(max)).msg("输入数值最大为：" + max);
+    public static Scheme MaxValue(final int fixedMax) {
+        return PairTest(new MaxValueVerifier(fixedMax)).msg("输入数值最大为：" + fixedMax);
     }
 
     /**
      * 输入数值不能大于最大值
-     * @param max 最大值
+     * @param fixedMax 最大值
      * @return Scheme
      */
-    public static Scheme MaxValue(final long max) {
-        return PairTest(new MaxValueAdapter(max)).msg("输入数值最大为：" + max);
+    public static Scheme MaxValue(final long fixedMax) {
+        return PairTest(new MaxValueVerifier(fixedMax)).msg("输入数值最大为：" + fixedMax);
     }
 
     /**
      * 输入数值不能大于最大值
-     * @param max 最大值
+     * @param fixedMax 最大值
      * @return Scheme
      */
-    public static Scheme MaxValue(final float max) {
-        return PairTest(new MaxValueAdapter(max)).msg("输入数值最大为：" + max);
+    public static Scheme MaxValue(final float fixedMax) {
+        return PairTest(new MaxValueVerifier(fixedMax)).msg("输入数值最大为：" + fixedMax);
     }
 
     /**
      * 输入数值不能大于最大值
-     * @param max 最大值
+     * @param fixedMax 最大值
      * @return Scheme
      */
-    public static Scheme MaxValue(final double max) {
-        return PairTest(new MaxValueAdapter(max)).msg("输入数值最大为：" + max);
+    public static Scheme MaxValue(final double fixedMax) {
+        return PairTest(new MaxValueVerifier(fixedMax)).msg("输入数值最大为：" + fixedMax);
     }
 
     /**
      * 输入数值必须在最值区间
-     * @param min 最小值
-     * @param max 最大值
+     * @param fixedMin 最小值
+     * @param fixedMax 最大值
      * @return Scheme
      */
-    public static Scheme RangeValue(final int min, final int max) {
-        return PairTest(new RangeValueAdapter(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+    public static Scheme RangeValue(final int fixedMin, final int fixedMax) {
+        return PairTest(new RangeValueAdapter(fixedMin, fixedMax)).msg("输入数值大小必须在[" + fixedMin + "," + fixedMax + "]之间");
     }
 
     /**
      * 输入数值必须在最值区间
-     * @param min 最小值
-     * @param max 最大值
+     * @param fixedMin 最小值
+     * @param fixedMax 最大值
      * @return Scheme
      */
-    public static Scheme RangeValue(final long min, final long max) {
-        return PairTest(new RangeValueAdapter(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+    public static Scheme RangeValue(final long fixedMin, final long fixedMax) {
+        return PairTest(new RangeValueAdapter(fixedMin, fixedMax)).msg("输入数值大小必须在[" + fixedMin + "," + fixedMax + "]之间");
     }
 
     /**
      * 输入数值必须在最值区间
-     * @param min 最小值
-     * @param max 最大值
+     * @param fixedMin 最小值
+     * @param fixedMax 最大值
      * @return Scheme
      */
-    public static Scheme RangeValue(final float min, final float max) {
-        return PairTest(new RangeValueAdapter(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+    public static Scheme RangeValue(final float fixedMin, final float fixedMax) {
+        return PairTest(new RangeValueAdapter(fixedMin, fixedMax)).msg("输入数值大小必须在[" + fixedMin + "," + fixedMax + "]之间");
     }
 
     /**
      * 输入数值必须在最值区间
-     * @param min 最小值
-     * @param max 最大值
+     * @param fixedMin 最小值
+     * @param fixedMax 最大值
      * @return Scheme
      */
-    public static Scheme RangeValue(final double min, final double max) {
-        return PairTest(new RangeValueAdapter(min, max)).msg("输入数值大小必须在[" + min + "," + max + "]之间");
+    public static Scheme RangeValue(final double fixedMin, final double fixedMax) {
+        return PairTest(new RangeValueAdapter(fixedMin, fixedMax)).msg("输入数值大小必须在[" + fixedMin + "," + fixedMax + "]之间");
     }
 
     /**
      * 输入内容与加载器的内容相同
-     * @param lazyLoader 加载器
+     * @param lazyLoader 相同内容延迟加载器
      * @return Scheme
      */
-    public static Scheme EqualsTo(final LazyLoader<String> lazyLoader){
-        return PairTest(new EqualsBridge(lazyLoader)).msg("输入内容与要求不一致");
+    public static Scheme EqualsTo(final Loader0<String> lazyLoader){
+        return new Scheme(new EqualsVerifier(lazyLoader)).msg("输入内容与要求不一致");
     }
 
     /**
@@ -186,12 +226,7 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme EqualsTo(final String fixedValue) {
-        return EqualsTo(new LazyLoader<String>() {
-            @Override
-            public String getValue() {
-                return fixedValue;
-            }
-        });
+        return new Scheme(new EqualsVerifier(fixedValue)).msg("输入内容与要求不一致");
     }
 
     /**
@@ -199,8 +234,8 @@ public class ValueScheme {
      * @param lazyLoader 加载器
      * @return Scheme
      */
-    public static Scheme NotEquals(final LazyLoader<String> lazyLoader){
-        return PairTest(new NotEqualsBridge(lazyLoader)).msg("输入内容不能与要求的相同");
+    public static Scheme NotEquals(final Loader0<String> lazyLoader){
+        return new Scheme(new NotEqualsVerifier(lazyLoader)).msg("输入内容不能与要求的相同");
     }
 
     /**
@@ -209,17 +244,12 @@ public class ValueScheme {
      * @return Scheme
      */
     public static Scheme NotEquals(final String fixedValue) {
-        return NotEquals(new LazyLoader<String>() {
-            @Override
-            public String getValue() {
-                return fixedValue;
-            }
-        });
+        return new Scheme(new NotEqualsVerifier(fixedValue)).msg("输入内容不能与要求的相同");
     }
     
-    public static <T> Scheme PairTest(final PairAdapter<T> bridge) {
-        return new Scheme(new PairVerifier<>(bridge));
-    }
+//    public static <T> Scheme PairTest(final PairAdapter<T> bridge) {
+//        return new Scheme(new PairVerifier<>(bridge));
+//    }
 
     // date
 
@@ -244,6 +274,14 @@ public class ValueScheme {
     }
 
     public static Scheme DateBefore(final String basedDate){
+        return new Scheme(new DateBeforeVerifier(basedDate)).msg("设定的日期必须在" + basedDate + "之前");
+    }
+
+    public static Scheme DateBefore(final Date basedDate, final SimpleDateFormat format){
+        return new Scheme(new DateBeforeVerifier(basedDate, format)).msg("设定的日期必须在" + basedDate + "之前");
+    }
+
+    public static Scheme DateBefore(final Date basedDate){
         return new Scheme(new DateBeforeVerifier(basedDate)).msg("设定的日期必须在" + basedDate + "之前");
     }
     

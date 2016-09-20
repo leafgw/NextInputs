@@ -12,7 +12,7 @@ public class EqualsTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        EqualsBridge bridge = new EqualsBridge(new LazyLoader<String>() {
+        EqualsVerifier bridge = new EqualsVerifier(new LazyLoader<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";
@@ -24,7 +24,7 @@ public class EqualsTestCase {
 
     @Test
     public void testFail() throws Exception {
-        EqualsBridge bridge = new EqualsBridge(new LazyLoader<String>() {
+        EqualsVerifier bridge = new EqualsVerifier(new LazyLoader<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";

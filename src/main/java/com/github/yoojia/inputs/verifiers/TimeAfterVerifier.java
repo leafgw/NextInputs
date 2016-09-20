@@ -1,5 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
+import com.github.yoojia.inputs.Loader0;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,11 +20,19 @@ public class TimeAfterVerifier extends SingleDateTimeVerifier {
     }
 
     public TimeAfterVerifier(Date basedValue) {
-        super(basedValue.getTime(), TIME_FORMAT);
+        super(basedValue, TIME_FORMAT);
     }
 
     public TimeAfterVerifier(Date basedValue, SimpleDateFormat format) {
-        super(basedValue.getTime(), format);
+        super(basedValue, format);
+    }
+
+    public TimeAfterVerifier(Loader0<String> basedDateTimeLoader) {
+        super(basedDateTimeLoader, TIME_FORMAT);
+    }
+
+    public TimeAfterVerifier(Loader0<String> basedDateTimeLoader, SimpleDateFormat format) {
+        super(basedDateTimeLoader, format);
     }
 
     @Override

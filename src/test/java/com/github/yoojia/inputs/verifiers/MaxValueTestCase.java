@@ -11,7 +11,7 @@ public class MaxValueTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        ValuedPairAdapter bridge = new MaxValueAdapter(10);
+        ValuedPairAdapter bridge = new MaxValueVerifier(10);
         PairVerifier<Double> verifier = new PairVerifier<>(bridge);
         Assert.assertTrue(verifier.perform(null));
         Assert.assertTrue(verifier.perform(""));
@@ -22,7 +22,7 @@ public class MaxValueTestCase {
 
     @Test
     public void testFail() throws Exception {
-        ValuedPairAdapter bridge = new MaxValueAdapter(10);
+        ValuedPairAdapter bridge = new MaxValueVerifier(10);
         PairVerifier<Double> verifier = new PairVerifier<>(bridge);
         Assert.assertFalse(verifier.perform("11"));
         Assert.assertFalse(verifier.perform("999"));
