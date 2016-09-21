@@ -3,8 +3,12 @@ package com.github.yoojia.inputs;
 /**
  * 数据懒加载器
  * @author 陈小锅 (yoojia.chen@gmail.com)
+ * @since 1.8
  */
-@Deprecated
-public interface LazyLoader<T> extends Loader1A<T> {
+public interface Loader2B<T>{
+
+    T getFirstValue();
+
+    T getSecondValue();
 
 }

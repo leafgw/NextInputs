@@ -1,8 +1,12 @@
 
+# Java SE
+
 **NextInputs** 基于 FireEye [https://github.com/yoojia/FireEye](https://github.com/yoojia/FireEye) 升级而来，
 继承了FireEye校验功能，并具有良好的扩展性，你可以根据业务需要创建自定义的校验规则。
 
 NextInputs项目地址：[https://github.com/yoojia/NextInputs](https://github.com/yoojia/NextInputs)
+
+# Android
 
 NextInputs-Android 是基于NextInputs的扩展库，为Android提供TextView、EditText等控件的扩展功能；
 **Android扩展项目地址：**[https://github.com/yoojia/NextInputs-Android](https://github.com/yoojia/NextInputs-Android)
@@ -13,9 +17,9 @@ NextInputs-Android 是基于NextInputs的扩展库，为Android提供TextView、
 
 # NextInputs 特点
 
-* 轻量级，纯JDK实现，无第三方依赖；
+* 轻量级，纯JDK实现，无任何第三方库依赖；
 * 小巧，Jar文件仅30K+;
-* 内置大量常用校验模式;
+* 内置30+个常用校验模式;
 * 支持自定义校验模式扩展;
 * 支持自定义校验目标扩展;
 * 支持自定义错误消息提示;
@@ -28,16 +32,20 @@ NextInputs-Android 是基于NextInputs的扩展库，为Android提供TextView、
 ## 使用示例
 
 ```java
+// 以下为演示对**固定值**进行判断的代码。
+// 在Android中，对EditText的内容进行判断，需要使用Loader1A接口进行延迟加载。
+// Android的数值加载方式，见另一项目：https://github.com/yoojia/NextInputs-Android
 NextInputs inputs = new NextInputs();
-inputs.add(Provider.fromString("yoojia")).with(StaticScheme.Required())
+inputs.add(InputProviders.fixedString("yoojia"))
+        .with(StaticScheme.Required())
 
-        .add(Provider.fromString("yoojia.chen@gmail.com"))
+        .add(InputProviders.fixedString("yoojia.chen@gmail.com"))
         .with(StaticScheme.Email())
 
-        .add(Provider.fromString("13800138000"))
+        .add(InputProviders.fixedString("13800138000"))
         .with(StaticScheme.ChineseMobile())
 
-        .add(Provider.fromString("4121551474702170"))
+        .add(InputProviders.fixedString("4121551474702170"))
         .with(StaticScheme.BankCard());
 
 if(inputs.test()) {
@@ -51,7 +59,7 @@ if(inputs.test()) {
 
 ```groovy
 dependencies {
-    compile 'com.github.yoojia:next-inputs:1.6.2'
+    compile 'com.github.yoojia:next-inputs:1.7'
 }
 ```
 
@@ -70,9 +78,11 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 - Host - 域名模式
 - URL - URL地址模式
 - Numeric - 数值模式
-- BlankCard - 银行卡/信用卡号码模式
+- BankCard - 银行卡/信用卡号码模式
 - ChineseIDCard 身份证号码模式
-- ChineseMobile 手机号码模式（国内手机号）
+- ChineseMobile 手机号码模式（国内）
+- ChineseTelephone 固定电话号码模式（国内）
+- MAC 设备物理地址（MAC Address）模式
 - IsTrue - 结果为True模式
 - IsFalse - 结果为False模式
 
@@ -117,9 +127,9 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 
 `StaticScheme.Numeric()`，输入内容必须是有效的数值。
 
-#### BlankCard - 银行卡/信用卡号码模式
+#### BankCard - 银行卡/信用卡号码模式
 
-`StaticScheme.BlankCard()`，输入内容必须是有效的银行卡号或者信用卡号。这个模式在实现上，使用银行卡号校验算法（Luhn）来校验，可以支持13位到19位长度的有效卡号。
+`StaticScheme.BankCard()`，输入内容必须是有效的银行卡号或者信用卡号。这个模式在实现上，使用银行卡号校验算法（Luhn）来校验，可以支持13位到19位长度的有效卡号。
 
 #### ChineseIDCard 身份证号码模式
 
@@ -128,6 +138,14 @@ NextInputs目前内置包含以下几种静态校验模式，在未来版本也�
 #### ChineseMobile 手机号码模式（国内手机号）
 
 `StaticScheme.ChineseMobile()`，输入内容必须是有效的手机号。这个手机号必须是11位国内手机号，其它国家或者地区的手机号暂不支持。
+
+#### ChineseTelephone 固定电话号码模式（国内）
+
+`StaticScheme.ChineseMobile()`，输入内容必须是有效的固定电话号码。其它国家或者地区的手机号暂不支持。
+
+#### MAC 设备物理地址（MAC Address）模式
+
+`StaticScheme.MAC()`，输入内容必须是有效的设备物理地址。
 
 #### IsTrue - 结果为True模式
 
@@ -154,6 +172,31 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 - RangeValue - 数值范围
 - Equals - 与指定内容相同
 - NotEquals - 与指定内容不相同
+- DateBefore - 在指定日期之前
+- DateAfter - 在指定日期之后
+- RangeDate - 在指定日期内
+- DateTimeBefore - 在指定日期时间之前
+- DateTimeAfter - 在指定日期时间之后
+- RangeDateTime  - 在指定日期时间内
+- TimeBefore - 在指定时间之前
+- TimeAfter - 在指定时间之后
+- RangeTime - 在指定时间内
+
+## 延迟获取基准数值
+
+在ValueScheme模式中，所有模式都需要一个基准数值来作为后续数值的判断标准。如“ValueScheme.MinLength”模式，如果直接指定固定数值：
+
+> ValueScheme.MinLength(10)
+
+则表示立即设定最小长度模式的基准长度为10。在很多情况下，这个基准数值并非即时获取，需要从另一个对象中动态地加载。这种情况下，可以使用延迟加载接口来实现：
+
+```java
+ValueScheme.MinLength(new Loader1A<Long> {
+  public Long getValue(){
+    return Spinner.getValue();// 假定最小长度基准值由Spinner来设定。
+  }
+})
+```
 
 #### Required -  必填项目
 
@@ -194,6 +237,42 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 
 方式与`ValueScheme.Equals`相同，判断方式取反。
 
+#### DateBefore - 在指定日期之前
+
+校验输入的日期字符串要求符合`yyyy-MM-dd`格式，指定日期同上，也可以传入Date对象。
+
+#### DateAfter - 在指定日期之后
+
+校验输入的日期字符串要求符合`yyyy-MM-dd`格式，指定日期同上，也可以传入Date对象。
+
+#### RangeDate - 在指定日期内
+
+校验输入的日期字符串要求符合`yyyy-MM-dd`格式，指定日期同上，也可以传入Date对象。
+
+#### DateTimeBefore - 在指定日期时间之前
+
+校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### DateTimeAfter - 在指定日期时间之后
+
+校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### RangeDateTime  - 在指定日期时间内
+
+校验输入的日期时间字符串要求符合`yyyy-MM-dd HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### TimeBefore - 在指定时间之前
+
+校验输入的日期时间字符串要求符合`HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### TimeAfter - 在指定时间之后
+
+校验输入的日期时间字符串要求符合`HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
+#### RangeTime - 在指定时间内
+
+校验输入的日期时间字符串要求符合`HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
+
 ----
 
 # 设置校验失败提示消息
@@ -221,7 +300,17 @@ input == null || input.length() == 0
 ```
 ----
 
-# Change Log
+# 版本更新
+
+##### 1.8
+
+- 增加Date/Time/DateTime校验模式；
+- ValueScheme的校验模式均增加Loader接口，以用于延迟获取校验基准数值。
+
+##### 1.7
+
+- 增加固定电话校验模式：ChineseTelephone
+- 增加MAC物理地址校验模式：MAC
 
 ##### 1.6.2
 

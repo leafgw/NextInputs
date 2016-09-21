@@ -1,22 +1,35 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.EmptyableVerifier;
+import com.github.yoojia.inputs.Loader1A;
+import com.github.yoojia.inputs.SingleVerifier;
 
 /**
  * 布尔值校验器
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class BoolVerifier extends EmptyableVerifier {
+public class BoolVerifier extends SingleVerifier<String> {
 
-    private final boolean mValue;
+    public BoolVerifier(final Loader1A<Boolean> valueLoader) {
+        super(new Loader1A<String>() {
+            @Override
+            public String getValue() {
+                return valueLoader.getValue().toString();
+            }
+        });
+    }
 
-    public BoolVerifier(boolean mBool) {
-        this.mValue = mBool;
+    public BoolVerifier(Boolean fixedValue) {
+        super(fixedValue.toString());
     }
 
     @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return (mValue ? "true" : "false").equals(notEmptyInput.toLowerCase());
+    protected String stringToTyped(String notEmptyInput) {
+        return notEmptyInput.toLowerCase();
+    }
+
+    @Override
+    protected boolean performTypedTest(String typedInput) {
+        return typedInput.equals(getBasedValue());
     }
 }

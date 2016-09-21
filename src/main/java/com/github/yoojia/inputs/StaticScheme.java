@@ -99,6 +99,22 @@ public class StaticScheme {
     }
 
     /**
+     * 固定电话号码
+     * @return Scheme
+     */
+    public static Scheme ChineseTelephone() {
+        return new Scheme(new TelephoneVerifier()).msg("请输入有效的电话号码");
+    }
+
+    /**
+     * 固定电话号码
+     * @return Scheme
+     */
+    public static Scheme MAC() {
+        return new Scheme(new MACAddressVerifier()).msg("请输入有效的MAC地址");
+    }
+
+    /**
      * 为True状态
      * @return Scheme
      */

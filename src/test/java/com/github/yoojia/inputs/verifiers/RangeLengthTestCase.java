@@ -12,7 +12,7 @@ public class RangeLengthTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        Verifier verifier = new RangeLengthVerifier(3, 5);
+        RangeLengthVerifier verifier = new RangeLengthVerifier(3, 5);
         Assert.assertTrue(verifier.perform(null));
         Assert.assertTrue(verifier.perform(""));
         Assert.assertTrue(verifier.perform("123"));
@@ -22,7 +22,7 @@ public class RangeLengthTestCase {
 
     @Test
     public void testFail() throws Exception {
-        Verifier verifier = new RangeLengthVerifier(3,5);
+        RangeLengthVerifier verifier = new RangeLengthVerifier(3,5);
         Assert.assertFalse(verifier.perform("1"));
         Assert.assertFalse(verifier.perform("12"));
         Assert.assertFalse(verifier.perform("123456"));

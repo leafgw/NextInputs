@@ -13,7 +13,7 @@ public class Scheme {
     String message;
 
     /**
-     * 验证顺序优先级.默认为 StaticPattern.PRIORITY_GENERAL
+     * 验证顺序优先级.默认为 StaticScheme.PRIORITY_GENERAL
      * @see StaticScheme
      */
     int orderPriority = StaticScheme.PRIORITY_GENERAL;
