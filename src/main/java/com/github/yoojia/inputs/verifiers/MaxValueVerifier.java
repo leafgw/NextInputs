@@ -24,8 +24,8 @@ public class MaxValueVerifier extends SingleVerifier<Double> {
     }
 
     @Override
-    protected boolean performTypedTest(Double typedInput) {
-        final Double based = getBasedValue();
+    protected boolean performTyped(Double typedInput) {
+        final Double based = getBenchmarkValue();
         return typedInput < based || typedInput.equals(based);
     }
 

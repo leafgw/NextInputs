@@ -18,8 +18,8 @@ public class MaxLengthVerifier extends SingleVerifier<Long> {
     }
 
     @Override
-    protected boolean performTypedTest(Long typedInput) {
-        return typedInput <= getBasedValue();
+    protected boolean performTyped(Long typedInput) {
+        return typedInput <= getBenchmarkValue();
     }
 
     @Override

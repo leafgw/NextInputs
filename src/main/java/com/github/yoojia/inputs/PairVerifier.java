@@ -4,7 +4,7 @@ package com.github.yoojia.inputs;
  * @author 陈小锅 (yoojia.chen@gmail.com)
  * @since 1.7
  */
-public abstract class PairVerifier<T> extends EmptyableVerifier {
+public abstract class PairVerifier<T> extends TypedVerifier<T> {
 
     private final Loader2A<T> mValueLoader;
 
@@ -26,22 +26,27 @@ public abstract class PairVerifier<T> extends EmptyableVerifier {
         });
     }
 
-    final protected T getFirstBasedValue(){
+    final protected T getBenchmarkValueA(){
         return mValueLoader.getFirstValue();
     }
 
-    final protected T getSecondBasedValue(){
+    final protected T getBenchmarkValueB(){
         return mValueLoader.getSecondValue();
     }
 
-    @Override
-    final public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return performTestValue(stringToTyped(notEmptyInput));
+    /**
+     * 获取基准数值的消息对象数值A
+     * @return 消息数值
+     */
+    public Object getBenchmarkMessageValueA(){
+        return getBenchmarkValueA();
     }
 
-    protected abstract boolean performTestValue(T typedInput);
-
-    protected abstract T stringToTyped(String notEmptyInput);
-
-
+    /**
+     * 获取基准数值的消息对象数值B
+     * @return 消息数值
+     */
+    public Object getBenchmarkMessageValueB(){
+        return getBenchmarkValueB();
+    }
 }

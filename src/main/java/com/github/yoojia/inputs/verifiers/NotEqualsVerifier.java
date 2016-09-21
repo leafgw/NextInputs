@@ -17,8 +17,8 @@ public class NotEqualsVerifier extends EqualsVerifier {
     }
 
     @Override
-    protected boolean performTypedTest(String typedInput) {
-        return !super.performTypedTest(typedInput);
+    protected boolean performTyped(String typedInput) {
+        return !super.performTyped(typedInput);
     }
 
 }

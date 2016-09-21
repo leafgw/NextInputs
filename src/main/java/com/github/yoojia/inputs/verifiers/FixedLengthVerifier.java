@@ -18,8 +18,8 @@ public class FixedLengthVerifier extends SingleVerifier<Long> {
     }
 
     @Override
-    protected boolean performTypedTest(Long typedInput) {
-        return typedInput.longValue() == getBasedValue();
+    protected boolean performTyped(Long typedInput) {
+        return typedInput.longValue() == getBenchmarkValue();
     }
 
     @Override

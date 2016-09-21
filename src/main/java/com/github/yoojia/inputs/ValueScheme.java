@@ -316,6 +316,42 @@ public class ValueScheme {
         return new Scheme(new DateBeforeVerifier(basedDateLoader)).msg(DATE_MSG_BEFORE);
     }
     
+    // range date
+
+    private static final String DATE_MSG_RANGE = "设定的日期必须在{0} - {1}之间";
+
+    public static Scheme RangeDate(final String minDate, final String maxDate, final SimpleDateFormat format){
+        return new Scheme(new RangeDateVerifier(minDate, maxDate, format)).msg(DATE_MSG_RANGE);
+    }
+
+    public static Scheme RangeDate(final String minDate, final String maxDate){
+        return new Scheme(new RangeDateVerifier(minDate, maxDate)).msg(DATE_MSG_RANGE);
+    }
+
+    public static Scheme RangeDate(final Loader2B<String> minDateLoader, final SimpleDateFormat format){
+        return new Scheme(new RangeDateVerifier(minDateLoader, format)).msg(DATE_MSG_RANGE);
+    }
+
+    public static Scheme RangeDate(final Loader2B<String> minDateLoader){
+        return new Scheme(new RangeDateVerifier(minDateLoader)).msg(DATE_MSG_RANGE);
+    }
+
+    public static Scheme RangeDate(final Date minDate, final Date maxDate, final SimpleDateFormat format){
+        return new Scheme(new RangeDateVerifier(minDate, maxDate, format)).msg(DATE_MSG_RANGE);
+    }
+
+    public static Scheme RangeDate(final Date minDate, final Date maxDate){
+        return new Scheme(new RangeDateVerifier(minDate, maxDate)).msg(DATE_MSG_RANGE);
+    }
+
+    public static Scheme RangeDate(final Loader2A<Date> rangeDateLoader, final SimpleDateFormat format){
+        return new Scheme(new RangeDateVerifier(rangeDateLoader, format)).msg(DATE_MSG_RANGE);
+    }
+
+    public static Scheme RangeDate(final Loader2A<Date> rangeDateLoader){
+        return new Scheme(new RangeDateVerifier(rangeDateLoader)).msg(DATE_MSG_RANGE);
+    }
+    
     // time
 
     private static final String TIME_MSG_AFTER = "设定的时间必须在{0}之后";
@@ -385,6 +421,42 @@ public class ValueScheme {
         return new Scheme(new TimeBeforeVerifier(basedDateLoader)).msg(TIME_MSG_BEFORE);
     }
 
+    // range time
+
+    private static final String TIME_MSG_RANGE = "设定的时间必须在{0} - {1}之间";
+
+    public static Scheme RangeTime(final String minTime, final String maxTime, final SimpleDateFormat format){
+        return new Scheme(new RangeTimeVerifier(minTime, maxTime, format)).msg(TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeTime(final String minTime, final String maxTime){
+        return new Scheme(new RangeTimeVerifier(minTime, maxTime)).msg(TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeTime(final Loader2B<String> rangeTimeLoader, final SimpleDateFormat format){
+        return new Scheme(new RangeTimeVerifier(rangeTimeLoader, format)).msg(TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeTime(final Loader2B<String> rangeTimeLoader){
+        return new Scheme(new RangeTimeVerifier(rangeTimeLoader)).msg(TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeTime(final Date minTime, final Date maxTime, final SimpleDateFormat format){
+        return new Scheme(new RangeTimeVerifier(minTime, maxTime, format)).msg(TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeTime(final Date minTime, final Date maxTime){
+        return new Scheme(new RangeTimeVerifier(minTime, maxTime)).msg(TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeTime(final Loader2A<Date> rangeTimeLoader, final SimpleDateFormat format){
+        return new Scheme(new RangeTimeVerifier(rangeTimeLoader, format)).msg(TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeTime(final Loader2A<Date> rangeTimeLoader){
+        return new Scheme(new RangeTimeVerifier(rangeTimeLoader)).msg(TIME_MSG_RANGE);
+    }
+
     // date time
     
     private static final String DATE_TIME_MSG_AFTER = "设定的日期时间必须在{0}之后";
@@ -452,5 +524,41 @@ public class ValueScheme {
 
     public static Scheme DateTimeBefore(final Loader1A<Date> basedDateLoader){
         return new Scheme(new DateTimeBeforeVerifier(basedDateLoader)).msg(DATE_TIME_MSG_BEFORE);
+    }
+
+    // range date time
+
+    private static final String DATE_TIME_MSG_RANGE = "设定的日期时间必须在{0} - {1}之间";
+
+    public static Scheme RangeDateTime(final String minDateTime, final String maxDateTime, final SimpleDateFormat format){
+        return new Scheme(new RangeDateTimeVerifier(minDateTime, maxDateTime, format)).msg(DATE_TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeDateTime(final String minDateTime, final String maxDateTime){
+        return new Scheme(new RangeDateTimeVerifier(minDateTime, maxDateTime)).msg(DATE_TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeDateTime(final Loader2B<String> dateTimeLoader, final SimpleDateFormat format){
+        return new Scheme(new RangeDateTimeVerifier(dateTimeLoader, format)).msg(DATE_TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeDateTime(final Loader2B<String> dateTimeLoader){
+        return new Scheme(new RangeDateTimeVerifier(dateTimeLoader)).msg(DATE_TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeDateTime(final Date minDateTime, final Date maxDateTime, final SimpleDateFormat format){
+        return new Scheme(new RangeDateTimeVerifier(minDateTime, maxDateTime, format)).msg(DATE_TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeDateTime(final Date minDateTime, final Date maxDateTime){
+        return new Scheme(new RangeDateTimeVerifier(minDateTime, maxDateTime)).msg(DATE_TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeDateTime(final Loader2A<Date> rangeDateTimeLoader, final SimpleDateFormat format){
+        return new Scheme(new RangeDateTimeVerifier(rangeDateTimeLoader, format)).msg(DATE_TIME_MSG_RANGE);
+    }
+
+    public static Scheme RangeDateTime(final Loader2A<Date> rangeDateTimeLoader){
+        return new Scheme(new RangeDateTimeVerifier(rangeDateTimeLoader)).msg(DATE_TIME_MSG_RANGE);
     }
 }

@@ -23,8 +23,8 @@ public class MinValueVerifier extends SingleVerifier<Double> {
     }
 
     @Override
-    protected boolean performTypedTest(Double typedInput) {
-        return typedInput >= getBasedValue();
+    protected boolean performTyped(Double typedInput) {
+        return typedInput >= getBenchmarkValue();
     }
 
 }

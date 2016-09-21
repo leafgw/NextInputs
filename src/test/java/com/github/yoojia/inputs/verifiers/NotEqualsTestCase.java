@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.LazyLoader;
+import com.github.yoojia.inputs.Loader1A;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class NotEqualsTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        NotEqualsVerifier verifier = new NotEqualsVerifier(new LazyLoader<String>() {
+        NotEqualsVerifier verifier = new NotEqualsVerifier(new Loader1A<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";
@@ -23,7 +23,7 @@ public class NotEqualsTestCase {
 
     @Test
     public void testFail() throws Exception {
-        NotEqualsVerifier verifier = new NotEqualsVerifier(new LazyLoader<String>() {
+        NotEqualsVerifier verifier = new NotEqualsVerifier(new Loader1A<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";

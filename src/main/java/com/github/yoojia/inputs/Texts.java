@@ -1,5 +1,7 @@
 package com.github.yoojia.inputs;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author 陈小锅 (yoojia.chen@gmail.com)
@@ -22,7 +24,7 @@ public final class Texts {
      * @return is matched
      */
     public static boolean regexMatch(String input, String regex) {
-        return java.util.regex.Pattern.compile(regex).matcher(input).matches();
+        return Pattern.compile(regex).matcher(input).matches();
     }
 
 }

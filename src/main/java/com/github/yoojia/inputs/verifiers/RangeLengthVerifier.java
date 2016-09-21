@@ -18,9 +18,9 @@ public class RangeLengthVerifier extends PairVerifier<Long> {
     }
 
     @Override
-    protected boolean performTestValue(Long typedInput) {
-        final long minLength  = getFirstBasedValue();
-        final long maxLength  = getSecondBasedValue();
+    protected boolean performTyped(Long typedInput) {
+        final long minLength  = getBenchmarkValueA();
+        final long maxLength  = getBenchmarkValueB();
         return minLength <= typedInput && typedInput <= maxLength;
     }
 

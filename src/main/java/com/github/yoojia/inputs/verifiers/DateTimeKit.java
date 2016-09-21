@@ -17,4 +17,8 @@ class DateTimeKit {
             throw new RuntimeException(e);
         }
     }
+
+    static String format(long dateTimeValue, SimpleDateFormat format){
+        return format.format(new Date(dateTimeValue));
+    }
 }

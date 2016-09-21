@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.LazyLoader;
+import com.github.yoojia.inputs.Loader1A;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class EqualsTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        EqualsVerifier verifier = new EqualsVerifier(new LazyLoader<String>() {
+        EqualsVerifier verifier = new EqualsVerifier(new Loader1A<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";
@@ -23,7 +23,7 @@ public class EqualsTestCase {
 
     @Test
     public void testFail() throws Exception {
-        EqualsVerifier verifier = new EqualsVerifier(new LazyLoader<String>() {
+        EqualsVerifier verifier = new EqualsVerifier(new Loader1A<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";
