@@ -1,6 +1,10 @@
 package com.github.yoojia.inputs.verifiers;
 
+import com.github.yoojia.inputs.Loader2A;
+import com.github.yoojia.inputs.Loader2B;
+
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author Yoojia Chen (yoojiachen@gmail.com)
@@ -8,16 +12,41 @@ import java.text.SimpleDateFormat;
  */
 public class RangeDateTimeVerifier extends PairDateTimeVerifier{
 
-    public RangeDateTimeVerifier(String first, String second) {
-        super(first, second, SingleDateTimeVerifier.DATE_TIME_FORMAT);
+    public RangeDateTimeVerifier(Loader2B<String> valueLoader) {
+        super(valueLoader, SingleDateTimeVerifier.DATE_TIME_FORMAT);
     }
 
-    public RangeDateTimeVerifier(String first, String second, SimpleDateFormat format) {
-        super(first, second, format);
+    public RangeDateTimeVerifier(Loader2B<String> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
+    }
+
+    public RangeDateTimeVerifier(Loader2A<Date> valueLoader) {
+        super(valueLoader, SingleDateTimeVerifier.DATE_TIME_FORMAT);
+    }
+
+    public RangeDateTimeVerifier(Loader2A<Date> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
+    }
+
+    public RangeDateTimeVerifier(Date fixedFirstValue, Date fixedSecondValue, SimpleDateFormat format) {
+        super(fixedFirstValue, fixedSecondValue, format);
+    }
+
+    public RangeDateTimeVerifier(Date fixedFirstValue, Date fixedSecondValue) {
+        super(fixedFirstValue, fixedSecondValue, SingleDateTimeVerifier.DATE_TIME_FORMAT);
+    }
+
+    public RangeDateTimeVerifier(String fixedFirstValue, String fixedSecondValue, SimpleDateFormat format) {
+        super(fixedFirstValue, fixedSecondValue, format);
+    }
+
+    public RangeDateTimeVerifier(String fixedFirstValue, String fixedSecondValue) {
+        super(fixedFirstValue, fixedSecondValue, SingleDateTimeVerifier.DATE_TIME_FORMAT);
     }
 
     @Override
-    protected boolean performTest(long firstValue, long secondValue, long sourceValue) {
-        return firstValue < sourceValue && sourceValue < secondValue;
+    protected boolean performTestValue(Long typedInput) {
+        return getFirstBasedValue() <= typedInput && typedInput <= getSecondBasedValue();
     }
+
 }

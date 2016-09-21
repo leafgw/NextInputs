@@ -1,5 +1,8 @@
 package com.github.yoojia.inputs.verifiers;
 
+import com.github.yoojia.inputs.Loader1A;
+import com.github.yoojia.inputs.Loader1B;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,24 +12,40 @@ import java.util.Date;
  */
 public class DateTimeAfterVerifier extends SingleDateTimeVerifier {
 
-    public DateTimeAfterVerifier(String dateTimeStr) {
-        super(dateTimeStr, DATE_TIME_FORMAT);
+    public DateTimeAfterVerifier(Loader1A<Date> valueLoader) {
+        super(valueLoader, DATE_TIME_FORMAT);
     }
 
-    public DateTimeAfterVerifier(String dateTimeStr, SimpleDateFormat format) {
-        super(dateTimeStr, format);
+    public DateTimeAfterVerifier(Loader1A<Date> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public DateTimeAfterVerifier(Date basedValue) {
-        super(basedValue.getTime(), DATE_TIME_FORMAT);
+    public DateTimeAfterVerifier(Loader1B<String> valueLoader) {
+        super(valueLoader, DATE_TIME_FORMAT);
     }
 
-    public DateTimeAfterVerifier(Date basedValue, SimpleDateFormat format) {
-        super(basedValue.getTime(), format);
+    public DateTimeAfterVerifier(Loader1B<String> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
+    }
+
+    public DateTimeAfterVerifier(Date fixedValue) {
+        super(fixedValue, DATE_TIME_FORMAT);
+    }
+
+    public DateTimeAfterVerifier(Date fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
+    }
+
+    public DateTimeAfterVerifier(String fixedValue) {
+        super(fixedValue, DATE_TIME_FORMAT);
+    }
+
+    public DateTimeAfterVerifier(String fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
     }
 
     @Override
-    protected boolean performTest(long basedValue, long sourceValue) {
-        return basedValue < sourceValue;
+    protected boolean performTypedTest(Long typedInput) {
+        return getBasedValue() < typedInput;
     }
 }

@@ -1,5 +1,8 @@
 package com.github.yoojia.inputs.verifiers;
 
+import com.github.yoojia.inputs.Loader1A;
+import com.github.yoojia.inputs.Loader1B;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,24 +12,40 @@ import java.util.Date;
  */
 public class DateTimeBeforeVerifier extends DateTimeAfterVerifier{
 
-    public DateTimeBeforeVerifier(String dateTimeStr) {
-        super(dateTimeStr);
+    public DateTimeBeforeVerifier(Loader1A<Date> valueLoader) {
+        super(valueLoader);
     }
 
-    public DateTimeBeforeVerifier(String dateTimeStr, SimpleDateFormat format) {
-        super(dateTimeStr, format);
+    public DateTimeBeforeVerifier(Loader1A<Date> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
     }
 
-    public DateTimeBeforeVerifier(Date basedValue) {
-        super(basedValue);
+    public DateTimeBeforeVerifier(Loader1B<String> valueLoader) {
+        super(valueLoader);
     }
 
-    public DateTimeBeforeVerifier(Date basedValue, SimpleDateFormat format) {
-        super(basedValue, format);
+    public DateTimeBeforeVerifier(Loader1B<String> valueLoader, SimpleDateFormat format) {
+        super(valueLoader, format);
+    }
+
+    public DateTimeBeforeVerifier(Date fixedValue) {
+        super(fixedValue);
+    }
+
+    public DateTimeBeforeVerifier(Date fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
+    }
+
+    public DateTimeBeforeVerifier(String fixedValue) {
+        super(fixedValue);
+    }
+
+    public DateTimeBeforeVerifier(String fixedValue, SimpleDateFormat format) {
+        super(fixedValue, format);
     }
 
     @Override
-    protected boolean performTest(long basedValue, long sourceValue) {
-        return basedValue > sourceValue;
+    protected boolean performTypedTest(Long typedInput) {
+        return getBasedValue() > typedInput;
     }
 }

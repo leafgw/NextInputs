@@ -1,21 +1,30 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.EmptyableVerifier;
+import com.github.yoojia.inputs.Loader1A;
+import com.github.yoojia.inputs.SingleVerifier;
 
 /**
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class MinLengthVerifier extends EmptyableVerifier {
+public class MinLengthVerifier extends SingleVerifier<Long> {
 
-    private final int mLength;
+    public MinLengthVerifier(Loader1A<Long> valueLoader) {
+        super(valueLoader);
+    }
 
-    public MinLengthVerifier(int mLength) {
-        this.mLength = mLength;
+    public MinLengthVerifier(long fixedValue) {
+        super(fixedValue);
     }
 
     @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return notEmptyInput.length() >= mLength;
+    protected Long stringToTyped(String notEmptyInput) {
+        return (long) notEmptyInput.length();
     }
+
+    @Override
+    protected boolean performTypedTest(Long typedInput) {
+        return typedInput >= getBasedValue();
+    }
+
 }

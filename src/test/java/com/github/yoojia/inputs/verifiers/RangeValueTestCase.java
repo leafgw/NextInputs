@@ -11,8 +11,7 @@ public class RangeValueTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        ValuedPairAdapter bridge = new RangeValueAdapter(5, 10);
-        PairVerifier<Double> verifier = new PairVerifier<>(bridge);
+        RangeValueVerifier verifier = new RangeValueVerifier(5, 10);
         Assert.assertTrue(verifier.perform(null));
         Assert.assertTrue(verifier.perform(""));
         Assert.assertTrue(verifier.perform("5"));
@@ -22,8 +21,7 @@ public class RangeValueTestCase {
 
     @Test
     public void testFail() throws Exception {
-        ValuedPairAdapter bridge = new RangeValueAdapter(5, 10);
-        PairVerifier<Double> verifier = new PairVerifier<>(bridge);
+        RangeValueVerifier verifier = new RangeValueVerifier(5, 10);
         Assert.assertFalse(verifier.perform("-10"));
         Assert.assertFalse(verifier.perform("4"));
         Assert.assertFalse(verifier.perform("11"));

@@ -25,7 +25,7 @@ dependencies {
 }
 
 ext{
-    projVersion = '1.7'
+    projVersion = '1.8'
     projName = 'NextInputs'
     projDesc = 'NextInputs: A Text Validation Library for Java'
     projURL = "https://github.com/yoojia/NextInputs"

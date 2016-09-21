@@ -1,36 +1,65 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.EmptyableVerifier;
+import com.github.yoojia.inputs.Loader2A;
+import com.github.yoojia.inputs.Loader2B;
+import com.github.yoojia.inputs.PairVerifier;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.7
  */
-abstract class PairDateTimeVerifier extends EmptyableVerifier{
+abstract class PairDateTimeVerifier extends PairVerifier<Long> {
 
-    private final long mFirstValue;
-    private final long mSecondValue;
     private final SimpleDateFormat mFormat;
 
-    public PairDateTimeVerifier(String first, String second, SimpleDateFormat format) {
-        mFormat = format;
-        try {
-            mFirstValue = format.parse(first).getTime();
-            mSecondValue = format.parse(second).getTime();
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+    public PairDateTimeVerifier(final Loader2B<String> valueLoader, final SimpleDateFormat format) {
+        super(new Loader2A<Long>() {
+            @Override
+            public Long getFirstValue() {
+                return DateTimeKit.parse(valueLoader.getFirstValue(), format).getTime();
+            }
+
+            @Override
+            public Long getSecondValue() {
+                return DateTimeKit.parse(valueLoader.getSecondValue(), format).getTime();
+            }
+        });
+        this.mFormat = format;
+    }
+
+    public PairDateTimeVerifier(final Loader2A<Date> valueLoader, SimpleDateFormat format) {
+        super(new Loader2A<Long>() {
+            @Override
+            public Long getFirstValue() {
+                return valueLoader.getFirstValue().getTime();
+            }
+
+            @Override
+            public Long getSecondValue() {
+                return valueLoader.getSecondValue().getTime();
+            }
+        });
+        this.mFormat = format;
+    }
+
+    public PairDateTimeVerifier(Date fixedFirstValue, Date fixedSecondValue, SimpleDateFormat format) {
+        super(fixedFirstValue.getTime(),
+                fixedSecondValue.getTime());
+        this.mFormat = format;
+    }
+
+    public PairDateTimeVerifier(String fixedFirstValue, String fixedSecondValue, SimpleDateFormat format) {
+        super(DateTimeKit.parse(fixedFirstValue, format).getTime()
+                , DateTimeKit.parse(fixedSecondValue, format).getTime());
+        this.mFormat = format;
     }
 
     @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        final long sourceValue = mFormat.parse(notEmptyInput).getTime();
-        return performTest(mFirstValue, mSecondValue, sourceValue);
+    protected Long stringToTyped(String notEmptyInput) {
+        return DateTimeKit.parse(notEmptyInput, mFormat).getTime();
     }
-
-    protected abstract boolean performTest(long firstValue, long secondValue, long sourceValue);
 
 }

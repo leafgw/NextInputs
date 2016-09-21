@@ -1,24 +1,31 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.EmptyableVerifier;
+import com.github.yoojia.inputs.Loader2A;
+import com.github.yoojia.inputs.PairVerifier;
 
 /**
  * @author YOOJIA CHEN (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class RangeLengthVerifier extends EmptyableVerifier {
+public class RangeLengthVerifier extends PairVerifier<Long> {
 
-    private final int mMinLength;
-    private final int mMaxLength;
+    public RangeLengthVerifier(Loader2A<Long> valueLoader) {
+        super(valueLoader);
+    }
 
-    public RangeLengthVerifier(int min, int max) {
-        this.mMinLength = min;
-        this.mMaxLength = max;
+    public RangeLengthVerifier(long fixedFirstValue, long fixedSecondValue) {
+        super(fixedFirstValue, fixedSecondValue);
     }
 
     @Override
-    public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        final int length = notEmptyInput.length();
-        return mMinLength <= length && length <= mMaxLength;
+    protected boolean performTestValue(Long typedInput) {
+        final long minLength  = getFirstBasedValue();
+        final long maxLength  = getSecondBasedValue();
+        return minLength <= typedInput && typedInput <= maxLength;
+    }
+
+    @Override
+    protected Long stringToTyped(String notEmptyInput) {
+        return (long)notEmptyInput.length();
     }
 }
