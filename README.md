@@ -306,6 +306,7 @@ input == null || input.length() == 0
 
 - 增加Date/Time/DateTime校验模式；
 - ValueScheme的校验模式均增加Loader接口，以用于延迟获取校验基准数值。
+- Scheme的提示消息接口：msg(String) / msgOnFail(String)，增加模板功能。使用{0}/{1}等可动态替换对应的基准数值。
 
 ##### 1.7
 
