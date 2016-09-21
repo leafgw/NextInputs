@@ -21,9 +21,8 @@ public abstract class SingleVerifier<T> extends TypedVerifier<T> {
         };
     }
 
-    protected T getBasedValue(){
+    final public T getBenchmarkValue(){
         return mValueLoader.getValue();
     }
 
-    protected abstract boolean performTypedTest(T typedInput);
 }

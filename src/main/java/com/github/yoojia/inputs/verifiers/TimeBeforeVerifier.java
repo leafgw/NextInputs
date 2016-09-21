@@ -45,8 +45,8 @@ public class TimeBeforeVerifier extends TimeAfterVerifier{
     }
 
     @Override
-    protected boolean performTypedTest(Long typedInput) {
-        return getBasedValue() > typedInput;
+    protected boolean performTyped(Long typedInput) {
+        return getBenchmarkValue() > typedInput;
     }
 
 }

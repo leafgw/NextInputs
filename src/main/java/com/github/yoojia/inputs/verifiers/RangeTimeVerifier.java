@@ -45,7 +45,7 @@ public class RangeTimeVerifier extends PairDateTimeVerifier{
     }
 
     @Override
-    protected boolean performTestValue(Long typedInput) {
-        return getFirstBasedValue() <= typedInput && typedInput <= getSecondBasedValue();
+    protected boolean performTyped(Long typedInput) {
+        return getBenchmarkValueA() <= typedInput && typedInput <= getBenchmarkValueB();
     }
 }

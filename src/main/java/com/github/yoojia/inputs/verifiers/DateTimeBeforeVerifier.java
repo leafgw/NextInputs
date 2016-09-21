@@ -45,7 +45,7 @@ public class DateTimeBeforeVerifier extends DateTimeAfterVerifier{
     }
 
     @Override
-    protected boolean performTypedTest(Long typedInput) {
-        return getBasedValue() > typedInput;
+    protected boolean performTyped(Long typedInput) {
+        return getBenchmarkValue() > typedInput;
     }
 }

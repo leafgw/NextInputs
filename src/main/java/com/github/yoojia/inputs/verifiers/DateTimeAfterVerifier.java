@@ -45,7 +45,7 @@ public class DateTimeAfterVerifier extends SingleDateTimeVerifier {
     }
 
     @Override
-    protected boolean performTypedTest(Long typedInput) {
-        return getBasedValue() < typedInput;
+    protected boolean performTyped(Long typedInput) {
+        return getBenchmarkValue() < typedInput;
     }
 }

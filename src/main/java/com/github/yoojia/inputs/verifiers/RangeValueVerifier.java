@@ -18,9 +18,9 @@ public class RangeValueVerifier extends PairVerifier<Double> {
     }
 
     @Override
-    protected boolean performTestValue(Double typedInput) {
-        final Double minLength  = getFirstBasedValue();
-        final Double maxLength  = getSecondBasedValue();
+    protected boolean performTyped(Double typedInput) {
+        final Double minLength  = getBenchmarkValueA();
+        final Double maxLength  = getBenchmarkValueB();
         return (minLength < typedInput || minLength.equals(typedInput))
                 && (typedInput < maxLength || typedInput.equals(maxLength));
     }

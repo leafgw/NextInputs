@@ -23,7 +23,7 @@ public class EqualsVerifier extends SingleVerifier<String> {
     }
 
     @Override
-    protected boolean performTypedTest(String typedInput) {
-        return typedInput.equals(getBasedValue());
+    protected boolean performTyped(String typedInput) {
+        return typedInput.equals(getBenchmarkValue());
     }
 }

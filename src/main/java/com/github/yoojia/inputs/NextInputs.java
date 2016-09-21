@@ -19,7 +19,7 @@ public class NextInputs {
         }
     };
 
-    private final ArrayList<InputSchemes> mVerifiers = new ArrayList<>();
+    private final ArrayList<InputSpec> mInputSpecs = new ArrayList<>();
 
     private MessageDisplay mMessageDisplay = new MessageDisplay() {
         @Override
@@ -38,15 +38,15 @@ public class NextInputs {
      * @return 校验测试结果是否成功
      */
     public boolean test(){
-        if(mVerifiers.isEmpty()){
+        if(mInputSpecs.isEmpty()){
             throw new IllegalArgumentException("No inputs and schemes to test");
         }
-        InputSchemes working = null;
+        InputSpec working = null;
         try{
             boolean passed = true;
-            for (InputSchemes current : mVerifiers) {
-                working = current;
-                final InputSchemes.Result r = current.perform();
+            for (InputSpec spec : mInputSpecs) {
+                working = spec;
+                final Result r = perform(spec);
                 if(!r.passed) {
                     mMessageDisplay.show(working.input, r.message);
                     passed = false;
@@ -73,7 +73,7 @@ public class NextInputs {
             throw new IllegalArgumentException("Test schemes is required !");
         }
         Arrays.sort(schemes, ORDERING);
-        mVerifiers.add(new InputSchemes(input, schemes));
+        mInputSpecs.add(new InputSpec(input, schemes));
         return this;
     }
 
@@ -83,13 +83,13 @@ public class NextInputs {
      * @return NextInputs
      */
     public NextInputs remove(Input input) {
-        final List<InputSchemes> toRemove = new ArrayList<>(1);
-        for(InputSchemes meta: mVerifiers) {
-            if(meta.input == input) {
-                toRemove.add(meta);
+        final List<InputSpec> toRemove = new ArrayList<>(1);
+        for(InputSpec spec: mInputSpecs) {
+            if(spec.input == input) {
+                toRemove.add(spec);
             }
         }
-        mVerifiers.removeAll(toRemove);
+        mInputSpecs.removeAll(toRemove);
         return this;
     }
 
@@ -98,7 +98,7 @@ public class NextInputs {
      * @return NextInputs
      */
     public NextInputs clear(){
-        mVerifiers.clear();
+        mInputSpecs.clear();
         return this;
     }
 
@@ -135,4 +135,31 @@ public class NextInputs {
         return new Fluent(input, this);
     }
 
+    private static Result perform(InputSpec spec) throws Exception {
+        final String value = spec.input.getValue();
+        for (Scheme scheme : spec.schemes) {
+            if (!scheme.verifier.perform(value)) {
+                final String message;
+                if(scheme.verifier instanceof SingleVerifier){
+                    final SingleVerifier verifier = (SingleVerifier) scheme.verifier;
+                    message = formatMessage(scheme.message, verifier.getBenchmarkValue());
+                }else if(scheme.verifier instanceof PairVerifier){
+                    final PairVerifier verifier = (PairVerifier) scheme.verifier;
+                    message = formatMessage(scheme.message, verifier.getBenchmarkValueA(), verifier.getBenchmarkValueB());
+                }else{
+                    message = scheme.message;
+                }
+                return new Result(false, message);
+            }
+        }
+        return new Result(true, "PASSED");
+    }
+
+    private static String formatMessage(String message, Object...args){
+        String output = message;
+        for (int i = 0; i < args.length; i++) {
+            output = output.replace("{"+i+"}", args[i].toString());
+        }
+        return output;
+    }
 }
