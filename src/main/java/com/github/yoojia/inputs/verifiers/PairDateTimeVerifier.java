@@ -62,4 +62,13 @@ abstract class PairDateTimeVerifier extends PairVerifier<Long> {
         return DateTimeKit.parse(notEmptyInput, mFormat).getTime();
     }
 
+    @Override
+    public Object getBenchmarkMessageValueA() {
+        return DateTimeKit.format(getBenchmarkValueA(), mFormat);
+    }
+
+    @Override
+    public Object getBenchmarkMessageValueB() {
+        return DateTimeKit.format(getBenchmarkValueB(), mFormat);
+    }
 }

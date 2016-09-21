@@ -26,12 +26,27 @@ public abstract class PairVerifier<T> extends TypedVerifier<T> {
         });
     }
 
-    final public T getBenchmarkValueA(){
+    final protected T getBenchmarkValueA(){
         return mValueLoader.getFirstValue();
     }
 
-    final public T getBenchmarkValueB(){
+    final protected T getBenchmarkValueB(){
         return mValueLoader.getSecondValue();
     }
 
+    /**
+     * 获取基准数值的消息对象数值A
+     * @return 消息数值
+     */
+    public Object getBenchmarkMessageValueA(){
+        return getBenchmarkValueA();
+    }
+
+    /**
+     * 获取基准数值的消息对象数值B
+     * @return 消息数值
+     */
+    public Object getBenchmarkMessageValueB(){
+        return getBenchmarkValueB();
+    }
 }

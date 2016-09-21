@@ -141,11 +141,11 @@ public class NextInputs {
             if (!scheme.verifier.perform(value)) {
                 final String message;
                 if(scheme.verifier instanceof SingleVerifier){
-                    final SingleVerifier verifier = (SingleVerifier) scheme.verifier;
-                    message = formatMessage(scheme.message, verifier.getBenchmarkValue());
+                    final SingleVerifier v = (SingleVerifier) scheme.verifier;
+                    message = formatMessage(scheme.message, v.getBenchmarkMessageValue());
                 }else if(scheme.verifier instanceof PairVerifier){
-                    final PairVerifier verifier = (PairVerifier) scheme.verifier;
-                    message = formatMessage(scheme.message, verifier.getBenchmarkValueA(), verifier.getBenchmarkValueB());
+                    final PairVerifier v = (PairVerifier) scheme.verifier;
+                    message = formatMessage(scheme.message, v.getBenchmarkMessageValueA(), v.getBenchmarkMessageValueB());
                 }else{
                     message = scheme.message;
                 }

@@ -24,7 +24,7 @@ public class UsageTest {
                 .add(InputProviders.fixedString("4121551474702170"))
                 .with(StaticScheme.BankCard())
 
-                .add(InputProviders.fixedString("2016-09-20"))
+                .add(InputProviders.fixedString("2016-09-30"))
                 .with(ValueScheme.DateAfter("2016-09-21"));
         Assert.assertTrue(inputs.test());
     }

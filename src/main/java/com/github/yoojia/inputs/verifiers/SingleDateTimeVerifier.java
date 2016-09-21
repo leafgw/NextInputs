@@ -57,4 +57,8 @@ abstract class SingleDateTimeVerifier extends SingleVerifier<Long>{
         return DateTimeKit.parse(notEmptyInput, mFormat).getTime();
     }
 
+    @Override
+    public Object getBenchmarkMessageValue() {
+        return DateTimeKit.format(getBenchmarkValue(), mFormat);
+    }
 }
