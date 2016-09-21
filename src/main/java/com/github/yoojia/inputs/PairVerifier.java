@@ -6,14 +6,14 @@ package com.github.yoojia.inputs;
  */
 public abstract class PairVerifier<T> extends EmptyableVerifier {
 
-    private final Loader1<T> mValueLoader;
+    private final Loader2A<T> mValueLoader;
 
-    public PairVerifier(Loader1<T> valueLoader) {
+    public PairVerifier(Loader2A<T> valueLoader) {
         mValueLoader = valueLoader;
     }
 
     public PairVerifier(final T fixedFirstValue, final T fixedSecondValue) {
-        this(new Loader1<T>() {
+        this(new Loader2A<T>() {
             @Override
             public T getFirstValue() {
                 return fixedFirstValue;

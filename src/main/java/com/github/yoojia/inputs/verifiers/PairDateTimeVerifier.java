@@ -1,7 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.Loader1;
-import com.github.yoojia.inputs.Loader1Ex;
+import com.github.yoojia.inputs.Loader2A;
+import com.github.yoojia.inputs.Loader2B;
 import com.github.yoojia.inputs.PairVerifier;
 
 import java.text.SimpleDateFormat;
@@ -15,8 +15,8 @@ abstract class PairDateTimeVerifier extends PairVerifier<Long> {
 
     private final SimpleDateFormat mFormat;
 
-    public PairDateTimeVerifier(final Loader1Ex<String> valueLoader, final SimpleDateFormat format) {
-        super(new Loader1<Long>() {
+    public PairDateTimeVerifier(final Loader2B<String> valueLoader, final SimpleDateFormat format) {
+        super(new Loader2A<Long>() {
             @Override
             public Long getFirstValue() {
                 return DateTimeKit.parse(valueLoader.getFirstValue(), format).getTime();
@@ -30,8 +30,8 @@ abstract class PairDateTimeVerifier extends PairVerifier<Long> {
         this.mFormat = format;
     }
 
-    public PairDateTimeVerifier(final Loader1<Date> valueLoader, SimpleDateFormat format) {
-        super(new Loader1<Long>() {
+    public PairDateTimeVerifier(final Loader2A<Date> valueLoader, SimpleDateFormat format) {
+        super(new Loader2A<Long>() {
             @Override
             public Long getFirstValue() {
                 return valueLoader.getFirstValue().getTime();

@@ -12,25 +12,23 @@ public class EqualsTestCase {
 
     @Test
     public void testPassed() throws Exception {
-        EqualsVerifier bridge = new EqualsVerifier(new LazyLoader<String>() {
+        EqualsVerifier verifier = new EqualsVerifier(new LazyLoader<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";
             }
         });
-        PairVerifier<String> verifier = new PairVerifier<>(bridge);
         Assert.assertTrue(verifier.perform("NextInputs"));
     }
 
     @Test
     public void testFail() throws Exception {
-        EqualsVerifier bridge = new EqualsVerifier(new LazyLoader<String>() {
+        EqualsVerifier verifier = new EqualsVerifier(new LazyLoader<String>() {
             @Override
             public String getValue() {
                 return "NextInputs";
             }
         });
-        PairVerifier<String> verifier = new PairVerifier<>(bridge);
         Assert.assertFalse(verifier.perform("NextInputs-Java"));
     }
 }

@@ -1,7 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
 
-import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader1A;
 import com.github.yoojia.inputs.SingleVerifier;
 
 /**
@@ -10,11 +10,11 @@ import com.github.yoojia.inputs.SingleVerifier;
  */
 public class MaxValueVerifier extends SingleVerifier<Double> {
 
-    public MaxValueVerifier(Loader0<Double> valueLoader) {
+    public MaxValueVerifier(Loader1A<Double> valueLoader) {
         super(valueLoader);
     }
 
-    public MaxValueVerifier(Double fixedValue) {
+    public MaxValueVerifier(double fixedValue) {
         super(fixedValue);
     }
 
@@ -25,7 +25,8 @@ public class MaxValueVerifier extends SingleVerifier<Double> {
 
     @Override
     protected boolean performTypedTest(Double typedInput) {
-        return typedInput <= getBasedValue();
+        final Double based = getBasedValue();
+        return typedInput < based || typedInput.equals(based);
     }
 
 }

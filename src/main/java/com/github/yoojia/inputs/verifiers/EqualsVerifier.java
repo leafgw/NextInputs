@@ -1,7 +1,6 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.Loader0;
-import com.github.yoojia.inputs.Loader0Ex;
+import com.github.yoojia.inputs.Loader1A;
 import com.github.yoojia.inputs.SingleVerifier;
 
 /**
@@ -10,7 +9,7 @@ import com.github.yoojia.inputs.SingleVerifier;
  */
 public class EqualsVerifier extends SingleVerifier<String> {
 
-    public EqualsVerifier(Loader0<String> valueLoader) {
+    public EqualsVerifier(Loader1A<String> valueLoader) {
         super(valueLoader);
     }
 

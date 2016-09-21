@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.Loader1;
+import com.github.yoojia.inputs.Loader2A;
 import com.github.yoojia.inputs.PairVerifier;
 
 /**
@@ -9,7 +9,7 @@ import com.github.yoojia.inputs.PairVerifier;
  */
 public class RangeLengthVerifier extends PairVerifier<Long> {
 
-    public RangeLengthVerifier(Loader1<Long> valueLoader) {
+    public RangeLengthVerifier(Loader2A<Long> valueLoader) {
         super(valueLoader);
     }
 

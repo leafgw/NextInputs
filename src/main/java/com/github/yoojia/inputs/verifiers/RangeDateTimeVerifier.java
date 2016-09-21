@@ -1,7 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.Loader1;
-import com.github.yoojia.inputs.Loader1Ex;
+import com.github.yoojia.inputs.Loader2A;
+import com.github.yoojia.inputs.Loader2B;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,19 +12,19 @@ import java.util.Date;
  */
 public class RangeDateTimeVerifier extends PairDateTimeVerifier{
 
-    public RangeDateTimeVerifier(Loader1Ex<String> valueLoader) {
+    public RangeDateTimeVerifier(Loader2B<String> valueLoader) {
         super(valueLoader, SingleDateTimeVerifier.DATE_TIME_FORMAT);
     }
 
-    public RangeDateTimeVerifier(Loader1Ex<String> valueLoader, SimpleDateFormat format) {
+    public RangeDateTimeVerifier(Loader2B<String> valueLoader, SimpleDateFormat format) {
         super(valueLoader, format);
     }
 
-    public RangeDateTimeVerifier(Loader1<Date> valueLoader) {
+    public RangeDateTimeVerifier(Loader2A<Date> valueLoader) {
         super(valueLoader, SingleDateTimeVerifier.DATE_TIME_FORMAT);
     }
 
-    public RangeDateTimeVerifier(Loader1<Date> valueLoader, SimpleDateFormat format) {
+    public RangeDateTimeVerifier(Loader2A<Date> valueLoader, SimpleDateFormat format) {
         super(valueLoader, format);
     }
 

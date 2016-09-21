@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader1A;
 import com.github.yoojia.inputs.SingleVerifier;
 
 /**
@@ -9,7 +9,7 @@ import com.github.yoojia.inputs.SingleVerifier;
  */
 public class MinLengthVerifier extends SingleVerifier<Long> {
 
-    public MinLengthVerifier(Loader0<Long> valueLoader) {
+    public MinLengthVerifier(Loader1A<Long> valueLoader) {
         super(valueLoader);
     }
 

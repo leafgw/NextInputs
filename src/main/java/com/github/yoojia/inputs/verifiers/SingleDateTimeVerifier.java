@@ -1,7 +1,7 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.Loader0;
-import com.github.yoojia.inputs.Loader0Ex;
+import com.github.yoojia.inputs.Loader1A;
+import com.github.yoojia.inputs.Loader1B;
 import com.github.yoojia.inputs.SingleVerifier;
 
 import java.text.SimpleDateFormat;
@@ -21,8 +21,8 @@ abstract class SingleDateTimeVerifier extends SingleVerifier<Long>{
     private final SimpleDateFormat mFormat;
 
     // Loader: Data
-    public SingleDateTimeVerifier(final Loader0<Date> valueLoader, SimpleDateFormat format) {
-        super(new Loader0<Long>() {
+    public SingleDateTimeVerifier(final Loader1A<Date> valueLoader, SimpleDateFormat format) {
+        super(new Loader1A<Long>() {
             @Override public Long getValue() {
                 return valueLoader.getValue().getTime();
             }
@@ -31,8 +31,8 @@ abstract class SingleDateTimeVerifier extends SingleVerifier<Long>{
     }
 
     // Loader: String
-    public SingleDateTimeVerifier(final Loader0Ex<String> valueLoader, final SimpleDateFormat format) {
-        super(new Loader0<Long>() {
+    public SingleDateTimeVerifier(final Loader1B<String> valueLoader, final SimpleDateFormat format) {
+        super(new Loader1A<Long>() {
             @Override
             public Long getValue() {
                 return DateTimeKit.parse(valueLoader.toString(), format).getTime();

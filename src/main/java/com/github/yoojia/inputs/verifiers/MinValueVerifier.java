@@ -1,19 +1,19 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader1A;
 import com.github.yoojia.inputs.SingleVerifier;
 
 /**
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.1
  */
-public class MinValueAdapter extends SingleVerifier<Double> {
+public class MinValueVerifier extends SingleVerifier<Double> {
 
-    public MinValueAdapter(Loader0<Double> valueLoader) {
+    public MinValueVerifier(Loader1A<Double> valueLoader) {
         super(valueLoader);
     }
 
-    public MinValueAdapter(Double fixedValue) {
+    public MinValueVerifier(double fixedValue) {
         super(fixedValue);
     }
 

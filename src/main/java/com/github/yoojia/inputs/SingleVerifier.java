@@ -6,14 +6,14 @@ package com.github.yoojia.inputs;
  */
 public abstract class SingleVerifier<T> extends TypedVerifier<T> {
 
-    private final Loader0<T> mValueLoader;
+    private final Loader1A<T> mValueLoader;
 
-    public SingleVerifier(Loader0<T> valueLoader) {
+    public SingleVerifier(Loader1A<T> valueLoader) {
         mValueLoader = valueLoader;
     }
 
     public SingleVerifier(final T fixedValue) {
-        mValueLoader = new Loader0<T>() {
+        mValueLoader = new Loader1A<T>() {
             @Override
             public T getValue() {
                 return fixedValue;

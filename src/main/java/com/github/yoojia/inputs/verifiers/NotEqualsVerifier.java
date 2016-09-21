@@ -1,6 +1,6 @@
 package com.github.yoojia.inputs.verifiers;
 
-import com.github.yoojia.inputs.Loader0;
+import com.github.yoojia.inputs.Loader1A;
 
 /**
  * @author Yoojia Chen (yoojiachen@gmail.com)
@@ -8,7 +8,7 @@ import com.github.yoojia.inputs.Loader0;
  */
 public class NotEqualsVerifier extends EqualsVerifier {
 
-    public NotEqualsVerifier(Loader0<String> valueLoader) {
+    public NotEqualsVerifier(Loader1A<String> valueLoader) {
         super(valueLoader);
     }
 

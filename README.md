@@ -32,6 +32,9 @@ NextInputs-Android 是基于NextInputs的扩展库，为Android提供TextView、
 ## 使用示例
 
 ```java
+// 以下为演示对**固定值**进行判断的代码。
+// 在Android中，对EditText的内容进行判断，需要使用Loader1A接口进行延迟加载。
+// Android的数值加载方式，见另一项目：https://github.com/yoojia/NextInputs-Android
 NextInputs inputs = new NextInputs();
 inputs.add(InputProviders.fixedString("yoojia"))
         .with(StaticScheme.Required())
@@ -179,6 +182,22 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 - TimeAfter - 在指定时间之后
 - RangeTime - 在指定时间内
 
+## 延迟获取基准数值
+
+在ValueScheme模式中，所有模式都需要一个基准数值来作为后续数值的判断标准。如“ValueScheme.MinLength”模式，如果直接指定固定数值：
+
+> ValueScheme.MinLength(10)
+
+则表示立即设定最小长度模式的基准长度为10。在很多情况下，这个基准数值并非即时获取，需要从另一个对象中动态地加载。这种情况下，可以使用延迟加载接口来实现：
+
+```java
+ValueScheme.MinLength(new Loader1A<Long> {
+  public Long getValue(){
+    return Spinner.getValue();// 假定最小长度基准值由Spinner来设定。
+  }
+})
+```
+
 #### Required -  必填项目
 
 `ValueScheme.Required()`，与StaticScheme.Required相同。
@@ -254,7 +273,6 @@ NextInputs目前内置包含以下几种数值校验模式，在未来版本也�
 
 校验输入的日期时间字符串要求符合`HH:mm:ss`格式，指定日期时间同上，也可以传入Date对象。
 
-
 ----
 
 # 设置校验失败提示消息
@@ -282,10 +300,12 @@ input == null || input.length() == 0
 ```
 ----
 
-# 注意事项
-
-
 # 版本更新
+
+##### 1.8
+
+- 增加Date/Time/DateTime校验模式；
+- ValueScheme的校验模式均增加Loader接口，以用于延迟获取校验基准数值。
 
 ##### 1.7
 

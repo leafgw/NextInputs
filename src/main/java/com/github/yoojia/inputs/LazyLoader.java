@@ -5,6 +5,6 @@ package com.github.yoojia.inputs;
  * @author 陈小锅 (yoojia.chen@gmail.com)
  */
 @Deprecated
-public interface LazyLoader<T> extends Loader0Ex<T> {
+public interface LazyLoader<T> extends Loader1A<T> {
 
 }
