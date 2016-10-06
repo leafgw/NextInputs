@@ -8,10 +8,10 @@ public abstract class TypedVerifier<T> extends EmptyableVerifier {
 
     @Override
     public boolean performTestNotEmpty(String notEmptyInput) throws Exception {
-        return performTyped(stringToTyped(notEmptyInput));
+        return performTyped(typedCast(notEmptyInput));
     }
 
-    protected abstract T stringToTyped(String notEmptyInput);
+    protected abstract T typedCast(String notEmptyInput);
 
     protected abstract boolean performTyped(T typedInput);
 }

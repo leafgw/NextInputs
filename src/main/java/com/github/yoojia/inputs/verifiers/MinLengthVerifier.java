@@ -18,7 +18,7 @@ public class MinLengthVerifier extends SingleVerifier<Long> {
     }
 
     @Override
-    protected Long stringToTyped(String notEmptyInput) {
+    protected Long typedCast(String notEmptyInput) {
         return (long) notEmptyInput.length();
     }
 

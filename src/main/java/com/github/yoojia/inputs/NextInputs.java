@@ -15,7 +15,7 @@ public class NextInputs {
     private static final Comparator<Scheme> ORDERING = new Comparator<Scheme>() {
         @Override
         public int compare(Scheme lhs, Scheme rhs) {
-            return lhs.orderPriority - rhs.orderPriority;
+            return lhs.priority - rhs.priority;
         }
     };
 
@@ -142,10 +142,13 @@ public class NextInputs {
                 final String message;
                 if(scheme.verifier instanceof SingleVerifier){
                     final SingleVerifier v = (SingleVerifier) scheme.verifier;
-                    message = formatMessage(scheme.message, v.getBenchmarkMessageValue());
-                }else if(scheme.verifier instanceof PairVerifier){
-                    final PairVerifier v = (PairVerifier) scheme.verifier;
-                    message = formatMessage(scheme.message, v.getBenchmarkMessageValueA(), v.getBenchmarkMessageValueB());
+                    message = formatTplMessage(scheme.message,
+                            v.benchmarkValueForMessage());
+                }else if(scheme.verifier instanceof PairedVerifier){
+                    final PairedVerifier v = (PairedVerifier) scheme.verifier;
+                    message = formatTplMessage(scheme.message,
+                            v.benchmark1stValueForMessage(),
+                            v.benchmark2ndValueForMessage());
                 }else{
                     message = scheme.message;
                 }
@@ -155,7 +158,7 @@ public class NextInputs {
         return new Result(true, "PASSED");
     }
 
-    private static String formatMessage(String message, Object...args){
+    private static String formatTplMessage(String message, Object...args){
         String output = message;
         for (int i = 0; i < args.length; i++) {
             output = output.replace("{"+i+"}", args[i].toString());

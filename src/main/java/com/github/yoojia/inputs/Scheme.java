@@ -16,7 +16,7 @@ public class Scheme {
      * 验证顺序优先级.默认为 StaticScheme.PRIORITY_GENERAL
      * @see StaticScheme
      */
-    int orderPriority = StaticScheme.PRIORITY_GENERAL;
+    int priority = StaticScheme.PRIORITY_GENERAL;
 
     /**
      * 具体校验算法实现接口
@@ -32,7 +32,7 @@ public class Scheme {
     }
 
     public Scheme priority(int priority){
-        this.orderPriority = priority;
+        this.priority = priority;
         return this;
     }
 
