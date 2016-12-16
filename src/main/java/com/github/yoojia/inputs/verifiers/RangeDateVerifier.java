@@ -10,7 +10,7 @@ import java.util.Date;
  * @author Yoojia Chen (yoojiachen@gmail.com)
  * @since 1.7
  */
-public class RangeDateVerifier extends PairDateTimeVerifier{
+public class RangeDateVerifier extends PairedDateTimeVerifier {
 
     public RangeDateVerifier(Loader2B<String> valueLoader) {
         super(valueLoader, SingleDateTimeVerifier.DATE_FORMAT);
@@ -46,7 +46,7 @@ public class RangeDateVerifier extends PairDateTimeVerifier{
 
     @Override
     protected boolean performTyped(Long typedInput) {
-        return getBenchmarkValueA() <= typedInput && typedInput <= getBenchmarkValueB();
+        return benchmark1stValue() <= typedInput && typedInput <= benchmark2ndValue();
     }
 
 }

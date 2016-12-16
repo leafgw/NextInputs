@@ -53,12 +53,12 @@ abstract class SingleDateTimeVerifier extends SingleVerifier<Long>{
     }
 
     @Override
-    protected Long stringToTyped(String notEmptyInput) {
+    protected Long typedCast(String notEmptyInput) {
         return DateTimeKit.parse(notEmptyInput, mFormat).getTime();
     }
 
     @Override
-    public Object getBenchmarkMessageValue() {
+    public Object benchmarkValueForMessage() {
         return DateTimeKit.format(getBenchmarkValue(), mFormat);
     }
 }

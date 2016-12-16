@@ -18,7 +18,7 @@ public class EqualsVerifier extends SingleVerifier<String> {
     }
 
     @Override
-    protected String stringToTyped(String notEmptyInput) {
+    protected String typedCast(String notEmptyInput) {
         return notEmptyInput;
     }
 

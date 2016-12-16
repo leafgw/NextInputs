@@ -18,7 +18,7 @@ public class MinValueVerifier extends SingleVerifier<Double> {
     }
 
     @Override
-    protected Double stringToTyped(String notEmptyInput) {
+    protected Double typedCast(String notEmptyInput) {
         return Double.parseDouble(notEmptyInput);
     }
 
