@@ -35,7 +35,7 @@ abstract class SingleDateTimeVerifier extends SingleVerifier<Long>{
         super(new Loader1A<Long>() {
             @Override
             public Long getValue() {
-                return DateTimeKit.parse(valueLoader.toString(), format).getTime();
+                return DateTimeKit.parse(valueLoader.getValue(), format).getTime();
             }
         });
         mFormat = format;
