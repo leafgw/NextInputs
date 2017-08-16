@@ -1,3 +1,9 @@
+# 自2017/08/16起,本项目已合并至[NextInputs-Android](https://github.com/yoojia/NextInputs-Android)项目
+# 自2017/08/16起,本项目已合并至[NextInputs-Android](https://github.com/yoojia/NextInputs-Android)项目
+# 自2017/08/16起,本项目已合并至[NextInputs-Android](https://github.com/yoojia/NextInputs-Android)项目
+
+----
+
 # 用于 Java 程序
 
 **NextInputs** 基于 FireEye [https://github.com/yoojia/FireEye](https://github.com/yoojia/FireEye) 升级而来，
